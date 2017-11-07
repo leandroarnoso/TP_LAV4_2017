@@ -1,3 +1,15 @@
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid[required], .ng-invalid.required  {
+  border-left: 5px solid #a94442; /* green */
+}
+
+.ng-invalid:not(registroForm)  {
+  border-left: 5px solid #a94442; /* red */
+}
+
 input[type=text], input[type=password] {
     width: 100%;
     padding: 12px 20px;
@@ -16,6 +28,33 @@ button {
     border: none;
     cursor: pointer;
     width: 100%;
+}
+
+button:hover {opacity: 0.8;}
+
+button:disabled,
+button[disabled]{
+  /*border: 1px solid #999999;*/
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  padding: 14px 20px;
+}
+
+/* Animacion para el alert*/
+.alert {
+    animation: 1.5s alertAnim forwards;
+}
+
+@keyframes alertAnim {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Extra styles for the cancel button */
@@ -37,6 +76,8 @@ button {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
+    padding-left: 25px;
+    padding-right: 25px;
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -50,6 +91,7 @@ button {
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
+    padding: 25px;
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
     width: 98%; /* Could be more or less, depending on screen size */

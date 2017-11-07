@@ -1,0 +1,9 @@
+<div>
+  <ul *ngIf="!nombreUsuario" class="nav navbar-nav navbar-right">
+    <li><a href="#"><span class="glyphicon glyphicon-user"></span>Registrarse</a></li>
+    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Ingresar</a></li>
+  </ul>
+  <ul *ngIf="nombreUsuario" class="nav navbar-nav navbar-right">
+    <li><a href="#"><span class="glyphicon glyphicon-user"></span>{{nombreUsuario}}</a></li>
+  </ul>
+</div>

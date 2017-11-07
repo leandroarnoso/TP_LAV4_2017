@@ -1,57 +1,46 @@
-<!--div style="margin: 20% auto; width: 30%;">
-  <div class="row">
-    <div class="col-lg-6">
-      Usuario
-    </div>
-    <div class="col-lg-6">
-      <input type="text"  [(ngModel)]="usuario">
-    </div>
-  </div>
-  <div class="row" style="margin-top: 5px">
-    <div class="col-lg-6">
-      Clave
-    </div>
-    <div class="col-lg-6">
-      <input type="password" [(ngModel)]="clave">
-    </div>
-  </div>
-  <div class="row" style="text-align: center; margin-top: 10px">
-    <div class="col-lg-12">
-      <button (click)="Entrar()" class="btn btn-info btn-lg" >Entrar</button>
-    </div>
-  </div>
-</div-->
- <div class="container" >
-  <div class="jumbotron" style="padding:50px;">
+
+  <div class="jumbotron">
     <form action="return true;">
       <div class="imgcontainer">
-        <img src="../assets/imagenes/login.png" alt="Avatar" class="avatar" max-width="104" >
+        <img src="./assets/imagenes/login.png" alt="Avatar" class="avatar" max-width="104" >
+      </div>
+
+      <div class="container" id="fondo">
+        <form (ngSubmit)="MoverBarraDeProgreso()" [formGroup]="loginForm">
+
+          <div class="form-group">
+            <label><b>Email</b></label>
+            <input type="text" placeholder="Email" [formControl]="email" name="email" required>
+            <div class="alert alert-danger" *ngIf="!email.valid && email.touched">
+              El email debe contener entre 5 y 30 caracteres.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label><b>Contraseña</b></label>
+            <input type="password" placeholder="Contraseña" [formControl]="password" name="password" required>
+            <div class="alert alert-danger" *ngIf="!password.valid && password.touched">
+              La contraseña debe contener entre 8 y 12 caracteres alfanumericos.
+            </div>
+          </div>
+              
+          <button type="submit" *ngIf="!logeando" [disabled]="!loginForm.valid"> Ingresar</button>
+        
+          <div *ngIf="logeando" class="progress">
+              <div class="progress-bar progress-bar-info progress-bar-striped active" [class]="clase" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" [style.width]="ProgresoDeAncho" >
+                {{progresoMensaje}} - {{progreso}}%
+              </div>
+          </div>
+        
+          <input type="checkbox"> Recordar mis datos
+        </form>
       </div>
 
       <div class="container">
-        <label><b>Usuario</b></label>
-        <input type="text" placeholder="Usuario"  [(ngModel)]="usuario"  name="uname" required>
-
-        <label><b>Clave</b></label>
-        <input type="password" placeholder="Clave"  [(ngModel)]="clave" name="psw" required>
-            
-        <button *ngIf="logeando"  (click)="MoverBarraDeProgreso()" >Ingresar</button>
-       
-        <div *ngIf="!logeando" class="progress">
-            <div class="progress-bar progress-bar-info progress-bar-striped active" [class]="clase" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" [style.width]="ProgresoDeAncho" >
-              {{progresoMensaje}} - {{progreso}}%
-            </div>
-        </div>
-       
-        <input type="checkbox" checked="checked"> Recordar mis datos
-      </div>
-
-      <div class="container" style="background-color:#f1f1f1">
-        <button type="button" class="cancelbtn">Cancelar</button>
-        <button type="button" class="aceptbtn" routerLink="/Registro" >Registrarse</button>
-        <span class="psw">Te olvidaste <a href="#">la clave?</a></span>
+        <!--<button type="button" class="cancelbtn">Cancelar</button>-->
+        <button type="button" class="aceptbtn" routerLink="/registro" >Registrarse</button>
+        <span class="psw">Olvidaste <a href="#">tu contraseña?</a></span>
       </div>
      
     </form>
   </div>
-</div>

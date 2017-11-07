@@ -1,8 +1,15 @@
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid[required], .ng-invalid.required  {
+  border-left: 5px solid #a94442; /* green */
+}
 
 form {
-    border: 10px solid #f1f1f1;
-    padding: 10px;
-    background:gray;
+    /*border: 10px transparent #f1f1f1;
+    padding: 10px;*/
+    background:transparent;
 }
 
 input[type=text], input[type=password] {
@@ -28,28 +35,66 @@ button:hover {
     opacity: 0.8;
 }
 
+button:hover {opacity: 0.8;}
+
+button:disabled,
+button[disabled]{
+  /*border: 1px solid #999999;*/
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  padding: 14px 20px;
+}
+
+/* Animacion para el alert*/
+.alert {
+    animation: 1.5s alertAnim forwards;
+}
+
+@keyframes alertAnim {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .cancelbtn {
     width: auto;
     padding: 10px 18px;
     background-color: #f44336;
 }
+
 .aceptbtn {
     width: auto;
     padding: 10px 18px;
     background-color: #3664F4;
 }
+
+.jumbotron {
+    padding: 60px;
+    background-image: url(../../../assets/imagenes/fondo.png);
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
 .imgcontainer {
     text-align: center;
     margin: 24px 0 12px 0;
-}
-
-img.avatar {
-    width: 40%;
-    border-radius: 50%;
+    background-color: transparent;
 }
 
 .container {
-    padding: 16px;
+    background-color: lightgray /*rgb(-150, -150, 100);*/
+}
+
+img.avatar {
+    width: 20%;
 }
 
 span.psw {

@@ -1,78 +1,48 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import { AppComponent } from './app.component';
-import { AdivinaElNumeroComponent } from './componentes/adivina-el-numero/adivina-el-numero.component';
-import { ListadoDeResultadosComponent } from './componentes/listado-de-resultados/listado-de-resultados.component';
-import { LoginComponent } from './componentes/login/login.component';
-//  import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
-// import { AccordionModule } from 'ngx-bootstrap';
-// agrego las clases para utilizar ruteo
-import { RouterModule, Routes } from '@angular/router';
-
-import { ErrorComponent } from './componentes/error/error.component';
-import { PrincipalComponent } from './componentes/principal/principal.component';
-import { AgilidadAritmeticaComponent } from './componentes/agilidad-aritmetica/agilidad-aritmetica.component';
-import { MenuComponent } from './componentes/menu/menu.component';
-import { AdivinaMasListadoComponent } from './componentes/adivina-mas-listado/adivina-mas-listado.component';
-import { AgilidadMasListadoComponent } from './componentes/agilidad-mas-listado/agilidad-mas-listado.component';
+// Modulos
 import { RuteandoModule } from './ruteando/ruteando.module';
-import { ListadoComponent } from './componentes/listado/listado.component';
-// declaro donde quiero que se dirija
-/*
-const MiRuteo = [{path: 'error' , component: ErrorComponent},
-{path: 'Login' , component: LoginComponent},
-{path: 'Principal' , component: PrincipalComponent , pathMatch: 'full'},
-{path: 'Adivina' , component: AdivinaElNumeroComponent},
-{path: 'AdivinaMasListado' , component: AdivinaMasListadoComponent},
-{path: 'AgilidadaMasListado' , component: AgilidadMasListadoComponent},
-{path: 'Agilidad' , component: AgilidadAritmeticaComponent},
-{path: '' , component: LoginComponent , pathMatch: 'full'},
-
-{path: '**' , component: ErrorComponent} ];
-*/
-
-import { JuegoServiceService } from './servicios/juego-service.service';
-import { ListadosComponent } from './componentes/listados/listados.component';
-import { JuegosComponent } from './componentes/juegos/juegos.component';
+// Componentes
+import { AppComponent } from './app.component';
+import { HomeComponent } from './componentes/home/home.component';
+import { LoginComponent } from './componentes/login/login.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
-import { MenuCardComponent } from './componentes/menu-card/menu-card.component';
-import { CabeceraComponent } from './componentes/cabecera/cabecera.component';
 import { QuienSoyComponent } from './componentes/quien-soy/quien-soy.component';
-import { AnagramaComponent } from './componentes/anagrama/anagrama.component'
+import { ErrorComponent } from './componentes/error/error.component';
+// Pipes
+import { SexoPipe } from './pipes/sexo.pipe';
+// Servicios
+import { MiHttpService } from "./servicios/mi-http.service";
+import { JugadorService } from "./servicios/jugador.service";
+import { HeaderComponent } from './componentes/header/header.component';
+import { NavBarComponent } from './componentes/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdivinaElNumeroComponent,
-    ListadoDeResultadosComponent,
-    ErrorComponent,
-    PrincipalComponent,
+    HomeComponent,
     LoginComponent,
-    AgilidadAritmeticaComponent,
-    MenuComponent,
-    AdivinaMasListadoComponent,
-    AgilidadMasListadoComponent,
-    ListadoComponent,
-    ListadosComponent,
-    JuegosComponent,
     RegistroComponent,
-    MenuCardComponent,
-    CabeceraComponent,
     QuienSoyComponent,
-    AnagramaComponent
+    ErrorComponent,
+    SexoPipe,
+    HeaderComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
+    HttpModule,
     RuteandoModule
-
-    // NgbModule.forRoot(MiRuteo),
-    // importo el ruteo
-    // RouterModule.forRoot(MiRuteo)
   ],
-  providers: [ JuegoServiceService],
+  providers: [
+    MiHttpService,
+    JugadorService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

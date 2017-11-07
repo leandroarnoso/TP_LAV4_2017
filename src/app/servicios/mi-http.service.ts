@@ -1,35 +1,49 @@
+import { log } from 'util';
 import { Injectable } from '@angular/core';
+import { Http, Response, Headers } from '@angular/http';
 
-import {Http ,Response} from '@angular/http';
-import 'rxjs/add/operator/toPromise';
-
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+//import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class MiHttpService {
-  
-  constructor(public http:Http) { }
-  
-  public httpGetPromise(url: string, objeto:any){
+  headers :Headers = new Headers({'Content-Type': 'application/json'});
 
+  constructor( public http: Http ) { }
 
+  /*public httpGetP ( url: string)
+  {
     return this.http
-    .get(url)
+    .get( url )
     .toPromise()
-    .then(this.extraerDatos)
-    .catch(this.handleError);
+    .then( this.extractData )
+    .catch( this.handleError );
+  }*/
+
+  public httpPost( url: string, objeto: any )
+  {
+    return this.http.post(url, objeto, {headers: this.headers})
+      .map(this.ExtractData)
+      .catch(this.HandleError);
   }
 
-  private extraerDatos(resp:Response) {
-
-      return resp.json() || {};
-
+  public httpGetO ( url: string): Observable<Response>
+  {
+    return this.http.get( url )
+      .map(this.ExtractData)
+      .catch(this.HandleError);
   }
-  private handleError(error:Response | any) {
 
-      return error;
+  private ExtractData ( res :Response )
+  {
+    return res.json() || {};
+  }
+
+  private HandleError ( error :Response | any )
+  {
+    return error;
   }
 
 }
