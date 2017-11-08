@@ -8,14 +8,15 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 
 export class HomeComponent implements OnInit {
-  nombreUsuario :string = localStorage.getItem("nombreUsuario");
+  
   title :string = "Sala de Juegos";
+  nombreUsuario :string = localStorage.getItem("nombreUsuario");
 
   constructor(private route :ActivatedRoute, private router :Router) { }
 
   ngOnInit() {
     if (localStorage.getItem("token")) {
-      console.log("Hola " + this.nombreUsuario);
+      console.log("Hola");
     }
     else {
       console.log ("quien sos vos?");

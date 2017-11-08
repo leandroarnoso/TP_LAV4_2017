@@ -1,0 +1,32 @@
+.container-fluid {
+    background-color: #555;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li a {
+    display: block;
+    padding: 8px 6px;
+    text-decoration: none;
+    cursor: pointer;
+    color:yellowgreen;
+}
+
+.dropdown-menu {
+    background-color: #555;
+    color:yellowgreen;
+}
+
+.divider {
+    background-color: yellowgreen;
+}
+
+/* Change the link color on hover */
+li a:hover {
+    background-color: whitesmoke;
+    color: yellowgreen;
+}

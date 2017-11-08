@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 // Modulos
 import { RuteandoModule } from './ruteando/ruteando.module';
@@ -19,6 +20,8 @@ import { MiHttpService } from "./servicios/mi-http.service";
 import { JugadorService } from "./servicios/jugador.service";
 import { HeaderComponent } from './componentes/header/header.component';
 import { NavBarComponent } from './componentes/nav-bar/nav-bar.component';
+import { AdivinaElNumeroComponent } from './componentes/adivina-el-numero/adivina-el-numero.component';
+import { JuegosComponent } from './componentes/juegos/juegos.component';
 
 @NgModule({
   declarations: [
@@ -31,12 +34,15 @@ import { NavBarComponent } from './componentes/nav-bar/nav-bar.component';
     SexoPipe,
     HeaderComponent,
     NavBarComponent,
+    AdivinaElNumeroComponent,
+    JuegosComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    AngularFontAwesomeModule,
     RuteandoModule
   ],
   providers: [

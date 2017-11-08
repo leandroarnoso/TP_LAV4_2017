@@ -1,9 +1,20 @@
-<div>
+<div class="container-fluid">
   <ul *ngIf="!nombreUsuario" class="nav navbar-nav navbar-right">
-    <li><a href="#"><span class="glyphicon glyphicon-user"></span>Registrarse</a></li>
-    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Ingresar</a></li>
+    <li><a href="/registro"><span class="glyphicon glyphicon-user"></span>Registrarse</a></li>
+    <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Ingresar</a></li>
   </ul>
   <ul *ngIf="nombreUsuario" class="nav navbar-nav navbar-right">
-    <li><a href="#"><span class="glyphicon glyphicon-user"></span>{{nombreUsuario}}</a></li>
+    <li class="dropdown">
+      <a class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+      {{nombreUsuario}} <span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <li><a >Perfil</a></li>
+        <li><a >Cambiar contraseña</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a (click)="Desloguear()">Cerrar Sesion</a></li>
+      </ul>
+    </li>
+    <!--<li><a href="#"><span class="glyphicon glyphicon-user"></span>{{nombreUsuario}}</a></li>-->
   </ul>
 </div>
+

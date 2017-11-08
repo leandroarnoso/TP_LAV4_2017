@@ -48,7 +48,7 @@
         <div class="form-group">
           <label><b>Sexo:</b></label>
           <select [formControl]="sexo">
-              <option *ngFor="let sexo of sexos" [value]="sexo">{{sexo | sexo}}</option>
+              <option *ngFor="let val of sexos" [value]="sexo">{{val | sexo}}</option>
           </select>
           <!--<h5><b>Sexo:</b></h5>
           <label class="center-block"><input type="radio" [formControl]="sexo" value="M">Masculino</label>
@@ -60,6 +60,9 @@
 
         <div class="form-group">
           <input type="checkbox" [formControl]="condiciones" required> Acepto los <a onclick="document.getElementById('terminos').style.display='block'" style="width:auto;">Terminos y condiciones</a>
+          <div class="alert alert-danger" *ngIf="!condiciones.valid && condiciones.touched">
+            Debe aceptar los terminos y condiciones.
+          </div>
         </div><br>
 
         <div class="clearfix">
