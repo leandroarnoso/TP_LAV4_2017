@@ -1,13 +1,67 @@
+button:disabled,
+button[disabled]{
+  /*border: 1px solid #999999;*/
+  background-color: #cccccc;
+  border-color: #666666;
+  color: #666666;
+  cursor: not-allowed;
+  padding: 14px 20px;
+}
 
-form {
-    border: 10px solid #f1f1f1;
-    padding: 10px;
-    background:gray;
+button:disabled:hover,
+button[disabled]:hover {
+    background-color: red;
+    border-color: #666666;
+    color: #666666;
+    cursor: not-allowed;
+}
+
+
+.fondo {
+    background-image: url(../../../assets/imagenes/home.jpg);
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+#juego.red {
+    background-color: red;
+}
+
+#juego.orangered {
+    background-color: orangered; 
+}
+
+#juego.orange {
+    background-color: orange;
+}
+
+#juego.yellow {
+    background-color: yellow;
+}
+
+#juego.yellowgreen {
+    background-color: yellowgreen;
+}
+
+#juego.green {
+    background-color: green;
+}
+
+#juego {
+    /*border: 10px solid #f1f1f1;*/
+    border-bottom-left-radius: 4%;
+    border-bottom-right-radius: 4%;
+    margin: 5%;
+    margin-top: 0;
+    padding: 20px;
+    /*background-color:yellowgreen;*/
 }
 
 input[type=text], input[type=password] {
     width: 100%;
-    padding: 12px 20px;
+    padding: 12px 2;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
@@ -19,7 +73,6 @@ button {
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
-    border: none;
     cursor: pointer;
     width: 100%;
 }
@@ -49,7 +102,22 @@ img.avatar {
 }
 
 .container {
-    padding: 16px;
+    color: lightgrey;
+    border-top-left-radius: 35%;
+    border-top-right-radius: 35%;
+    margin: 5%;
+    margin-bottom: 0;
+    width: 90%;
+    padding: 20px;
+    background-image: url(../../../assets/imagenes/game-description.jpg);
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.container h3 {
+    color: grey;
 }
 
 span.psw {

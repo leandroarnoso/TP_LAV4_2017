@@ -5,7 +5,7 @@
     <a routerLink="/quien-soy" target="_blank">Quien Soy?</a>
     <a href="https://github.com/leandroarnoso" target="_blank">en GitHub <i class="fa fa-github"></i></a>
   </div>
-  <app-nav-bar [nombreUsuario]="nombreUsuario"></app-nav-bar>
+  <app-nav-bar (EventDeslogueo)="Cargar($event)" [nombreUsuario]="nombreUsuario"></app-nav-bar>
 </div>
 
 

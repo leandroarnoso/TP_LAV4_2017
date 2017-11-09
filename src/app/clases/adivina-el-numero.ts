@@ -8,18 +8,31 @@ export class AdivinaElNumero extends Juego{
     numeroIngresado :number;
 
     // CONSTRUCTOR
-    constructor(nombre :string, jugador :Jugador) {
-        super(nombre, jugador);   
+    constructor(jugador :Jugador) {
+        super("Adivina el Numero", jugador);
     }
 
     // METODOS
-    GenerarNuevo() {
+    public GenerarNuevo(puntaje :number) {
         this.gano = false;
-        this.numeroSecreto = Math.round(Math.random() * 100);
+        this.puntaje = puntaje;
+        this.numeroSecreto = Math.floor((Math.random() * 100) + 1);
      }
 
-    Verificar() {
-         this.gano = (this.numeroSecreto == this.numeroIngresado);
+     public Verificar() :boolean {
+        if (this.numeroSecreto == this.numeroIngresado) {
+            this.gano = true;
+        } else {
+            this.puntaje -= 500;
+        }
+        return this.gano;
     }
+
+    public RetornarAyuda() {
+        if (this.numeroIngresado < this.numeroSecreto) {
+          return "Falta";
+        }
+        return "Te pasate";
+      }
     
 }

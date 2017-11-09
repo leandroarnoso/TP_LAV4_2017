@@ -1,33 +1,7 @@
 <div class="fondo">
-  <app-header [title]="title" [nombreUsuario]="nombreUsuario"></app-header><br><br>
+  <app-header (EventDeslogueo)="Cargar($event)" [title]="title" [nombreUsuario]="nombreUsuario"></app-header><br><br>
 
   <div class="container">
-
-    <div class="card">
-      <img class="img-thumbnail"   src="./assets/imagenes/agilidad-mental.jpg" alt="Avatar" style="width:100%">
-      <h1>Velocidad y agilidad aritmética </h1>
-      <p class="title">Juego de agilidad mental</p>
-      <p>UTN FRA </p>
-    
-      <a href="#"><i class="fa fa-dribbble"></i></a> 
-      <a href="#"><i class="fa fa-twitter"></i></a> 
-      <a href="#"><i class="fa fa-linkedin"></i></a> 
-      <a href="#"><i class="fa fa-facebook"></i></a> 
-      <p><button class="button" (click)="Juego('Agilidad')" [disabled]="!nombreUsuario">Jugar</button></p>  
-    </div>
-
-    <div class="card">
-      <img class="img-thumbnail" src="./assets/imagenes/ppt.jpg" alt="Avatar" style="width:100%">
-      <h1>Piedra Papel o Tijera</h1>
-      <p class="title">Juega contra la máquina</p>
-      <p>UTN FRA </p>
-        
-      <a href="#"><i class="fa fa-dribbble"></i></a> 
-      <a href="#"><i class="fa fa-twitter"></i></a> 
-      <a href="#"><i class="fa fa-linkedin"></i></a> 
-      <a href="#"><i class="fa fa-facebook"></i></a> 
-      <p><button class="button"  (click)="Juego('PPT')" [disabled]="!nombreUsuario">Jugar</button></p>
-    </div>
 
     <div class="card">
       <img  class="img-thumbnail"  src="./assets/imagenes/adivina-numero.jpg" alt="Avatar" style="width:100%">
@@ -39,8 +13,47 @@
       <a href="#"><i class="fa fa-twitter"></i></a> 
       <a href="#"><i class="fa fa-linkedin"></i></a> 
       <a href="#"><i class="fa fa-facebook"></i></a> 
-      <p><button class="button"  (click)="Juego('Adivina')" [disabled]="!nombreUsuario">Jugar</button></p>
+      <p><button class="button"  (click)="GoTo('Adivina')" [disabled]="!nombreUsuario">Jugar</button></p>
     </div>
 
+    <div class="card">
+      <img class="img-thumbnail"   src="./assets/imagenes/agilidad-mental.jpg" alt="Avatar" style="width:100%">
+      <h1>Velocidad y agilidad aritmética </h1>
+      <p class="title">Juego de agilidad mental</p>
+      <p>UTN FRA </p>
+    
+      <a href="#"><i class="fa fa-dribbble"></i></a> 
+      <a href="#"><i class="fa fa-twitter"></i></a> 
+      <a href="#"><i class="fa fa-linkedin"></i></a> 
+      <a href="#"><i class="fa fa-facebook"></i></a> 
+      <p><button class="button" (click)="GoTo('Agilidad')" [disabled]="!nombreUsuario">Jugar</button></p>  
+    </div>
+
+    <div class="card">
+      <img class="img-thumbnail" src="./assets/imagenes/ppt2.jpg" alt="Avatar" style="width:100%">
+      <h1>Piedra Papel o Tijera</h1>
+      <p class="title">Juega contra la máquina</p>
+      <p>UTN FRA </p>
+        
+      <a href="#"><i class="fa fa-dribbble"></i></a> 
+      <a href="#"><i class="fa fa-twitter"></i></a> 
+      <a href="#"><i class="fa fa-linkedin"></i></a> 
+      <a href="#"><i class="fa fa-facebook"></i></a> 
+      <p><button class="button"  (click)="GoTo('PPT')" [disabled]="!nombreUsuario">Jugar</button></p>
+    </div>
+
+    <div class="card">
+      <img  class="img-thumbnail"  src="./assets/imagenes/anagrama.jpg" alt="Avatar" style="width:100%">
+      <h1>Anagrama</h1>
+      <p class="title">Juego de inteligencia verbal</p>
+      <p>UTN FRA </p>
+        
+      <a href="#"><i class="fa fa-dribbble"></i></a> 
+      <a href="#"><i class="fa fa-twitter"></i></a> 
+      <a href="#"><i class="fa fa-linkedin"></i></a> 
+      <a href="#"><i class="fa fa-facebook"></i></a> 
+      <p><button class="button"  (click)="GoTo('Anagrama')" [disabled]="!nombreUsuario">Jugar</button></p>
+    </div>
+    
   </div>
 </div>

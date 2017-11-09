@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, FormBuilder, FormGroup, FormControl, Validators }   from '@angular/forms';
-import {JugadorService} from '../../servicios/jugador.service';
-//import {Jugador} from '../../clases/jugador';
+// Clases 
+import { Jugador } from '../../clases/jugador';
+// Servicios
+import { JugadorService } from '../../servicios/jugador.service';
+
+
 
 @Component({
   selector: 'app-registro',
@@ -75,12 +79,18 @@ export class RegistroComponent implements OnInit {
   }
 
   Registrar() {
-    let jugador = {
+    /*let jugador = {
       nombreUsuario: this.registroForm.get('nombreUsuario').value,
       email: this.registroForm.get('email').value,
       password: this.registroForm.get('password').value,
       sexo: this.registroForm.get('sexo').value
-    };
+    };*/
+    let jugador :Jugador = new Jugador(
+      this.registroForm.get('nombreUsuario').value, 
+      this.registroForm.get('email').value,
+      this.registroForm.get('sexo').value,
+      this.registroForm.get('password').value
+    );
     this.miJugadorService.Crear("usuario/alta", jugador); 
   }
  

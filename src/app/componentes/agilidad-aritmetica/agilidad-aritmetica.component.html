@@ -1,38 +1,44 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<!--app-menu></app-menu-->
-<!-- index.html -->
+<div class="fondo">
 
+  <app-header [title]="nuevoJuego.nombre" [nombreUsuario]="jugador.nombreUsuario"></app-header>
 
-<form name="juego">
-<ul>
-   <li>
-   Primer número: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%" readonly/>
+  <div class="container">
+      <h3><b>Instrucciones de juego:</b></h3>
+      <h4>Tienes 10 segundos para resolver cada operacion matematica.</h4>
+      <h4>El puntaje sera la cantidad de segundos restantes por 1000.</h4>
+      <h4>Las divisiones son enteras y se redondean hacia abajo Ej: 9 / 5 = 1.</h4>
+  </div>
+
+  <form name="juego" id="juego">
+
+    <label><b>{{ nuevoJuego.numero1}} {{ nuevoJuego.operador }} {{ nuevoJuego.numero2 }} =</b></label>  
+    <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="Ingrese el resultado de la operacion" name="numeroIngresado" id="input" type="text" class="form-control" style="width:50%"/>
+    <h3>Puntaje: {{ nuevoJuego.puntaje || 0 }}</h3>
+    <h3>Tiempo: {{ tiempo || 0 }} seg.</h3>
   
-  </li>
-  <li>
-   Operador: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%" readonly/>
-    
-  </li>
-  <li>
-   Segundo número: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%" readonly/>
-    
-  </li>
-  <li>
-    Respuesta: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%"/>
-     
-   </li>
-  <li>
-    <h2 [hidden]="ocultarVerificar" ><button (click)="verificar()" class="btn btn-success btn-lg">Verificar {{Tiempo}} </button></h2>
-  </li>
-  <li>
-    <h2 [hidden]="!ocultarVerificar"><button  (click)="NuevoJuego()"  class="btn btn-info btn-lg">Nuevo</button></h2>
-  </li>
-  <li>
-    <h2><p><i class="fa fa-spinner fa-spin"></i>Esperando numero...</p></h2>
+    <h2 *ngIf="!ocultarVerificar">
+      <button (click)="Verificar()" class="btn btn-success btn-lg" [disabled]="!ValidarNumero(nuevoJuego.numeroIngresado)">
+        Verificar
+      </button>
+    </h2>
+  
+    <h2>
+      <button *ngIf="ocultarVerificar" (click)="GenerarNuevo()" class="btn btn-info btn-lg">
+        Dame una operacion a resolver
+      </button>
+    </h2>
+  
+    <h2>
+      <p align="center" *ngIf="!ocultarVerificar" ><i class="fa fa-spinner fa-pulse"></i>
+        Esperando que ingrese un número
+      </p>
+    </h2>
 
-    <h3 [hidden]="!nuevoJuego.gano">usted adivino el número</h3>
-    <h3 [hidden]="nuevoJuego.gano">usted aún no gano </h3>
-  </li>
-</ul>
+    <h3 align="center" *ngIf="nuevoJuego.gano">usted ha resolvido la operacion matematica.</h3>
+    <h3 align="center" *ngIf="!nuevoJuego.gano && tiempo > 0">usted aún no gano.</h3>
+    <h3 align="center" *ngIf="!nuevoJuego.gano && tiempo == 0">usted ha perdido.</h3>
 
-</form>
+  </form>
+
+  <div id="snackbar">{{mensajes}}</div>
+</div>

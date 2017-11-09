@@ -5,16 +5,16 @@ export  abstract class Juego {
     // ATRIBUTOS
     nombre :string;
     jugador :Jugador;
+    puntaje :number;
     gano :boolean;
     
     // CONSTRUCTOR
-    constructor(nombre :string, jugador :Jugador){
+    constructor(nombre :string, jugador :Jugador) {
         this.nombre = nombre;
         this.jugador = jugador;
-        this.gano = false;
     }
 
     // METODOS
-    public abstract GenerarNuevo();
-    public abstract  Verificar();
+    public abstract GenerarNuevo(puntaje :number);
+    public abstract  Verificar() :boolean;
 }

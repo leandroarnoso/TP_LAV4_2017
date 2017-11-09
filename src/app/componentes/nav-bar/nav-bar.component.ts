@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
@@ -11,6 +11,9 @@ export class NavBarComponent implements OnInit {
   @Input()
   nombreUsuario :string;
 
+  @Output() 
+  EventDeslogueo: EventEmitter<any> = new EventEmitter<any>();
+
   constructor(private route :ActivatedRoute, private router :Router) { }
 
   ngOnInit() {
@@ -18,8 +21,9 @@ export class NavBarComponent implements OnInit {
 
   Desloguear() {
     localStorage.removeItem("token");
-    localStorage.removeItem("nombreUsuario");
-    this.router.navigate(["/"]);
+    localStorage.removeItem("jugador");
+    this.nombreUsuario = "";
+    this.EventDeslogueo.emit(this.EventDeslogueo);
   }
 
 }

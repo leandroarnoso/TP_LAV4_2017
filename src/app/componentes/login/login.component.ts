@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { FormsModule, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import {JugadorService} from '../../servicios/jugador.service';
-
 import {Subscription} from "rxjs";
 import {TimerObservable} from "rxjs/observable/TimerObservable";
+// Clases
+import { Jugador } from "../../clases/jugador";
+// Servicios
+import {JugadorService} from '../../servicios/jugador.service';
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -62,17 +66,16 @@ export class LoginComponent implements OnInit {
     this.miJugadorService.Login("usuario", datos)
     .subscribe( res => {
       if (res) {
-        localStorage.setItem("nombreUsuario", JSON.stringify(res.nombre_usuario));
+        let jugador :Jugador = new Jugador(res.nombre_usuario, res.email, res.sexo);
+        localStorage.setItem("jugador", JSON.stringify(jugador));
         localStorage.setItem("token", JSON.stringify(res.token));
         this.router.navigate(['']);
       } else {
         console.log("usuario no valido");
       }
-    });
-    /*if (this.email === 'admin' && this.password === 'admin') {
-      this.router.navigate(['/']);
-    }*/
+    })
   }
+
   MoverBarraDeProgreso() {
     
     this.logeando = true;
@@ -111,7 +114,6 @@ export class LoginComponent implements OnInit {
           break;
       }     
     });
-    //this.logeando=true;
   }
 
 }

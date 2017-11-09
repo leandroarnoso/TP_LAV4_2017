@@ -20,8 +20,11 @@ import { MiHttpService } from "./servicios/mi-http.service";
 import { JugadorService } from "./servicios/jugador.service";
 import { HeaderComponent } from './componentes/header/header.component';
 import { NavBarComponent } from './componentes/nav-bar/nav-bar.component';
-import { AdivinaElNumeroComponent } from './componentes/adivina-el-numero/adivina-el-numero.component';
 import { JuegosComponent } from './componentes/juegos/juegos.component';
+import { AdivinaElNumeroComponent } from './componentes/adivina-el-numero/adivina-el-numero.component';
+import { AgilidadAritmeticaComponent } from './componentes/agilidad-aritmetica/agilidad-aritmetica.component';
+import { PiedraPapelTijeraComponent } from './componentes/piedra-papel-tijera/piedra-papel-tijera.component';
+import { AnagramaComponent } from './componentes/anagrama/anagrama.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +37,11 @@ import { JuegosComponent } from './componentes/juegos/juegos.component';
     SexoPipe,
     HeaderComponent,
     NavBarComponent,
-    AdivinaElNumeroComponent,
     JuegosComponent,
+    AdivinaElNumeroComponent,
+    AgilidadAritmeticaComponent,
+    PiedraPapelTijeraComponent,
+    AnagramaComponent
   ],
   imports: [
     BrowserModule,

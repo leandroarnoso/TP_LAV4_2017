@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+// Clases
+import { Jugador } from "../../clases/jugador";
 
 @Component({
   selector: 'app-home',
@@ -10,20 +12,24 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 export class HomeComponent implements OnInit {
   
   title :string = "Sala de Juegos";
-  nombreUsuario :string = localStorage.getItem("nombreUsuario");
+  nombreUsuario :string;
 
   constructor(private route :ActivatedRoute, private router :Router) { }
 
   ngOnInit() {
-    if (localStorage.getItem("token")) {
-      console.log("Hola");
-    }
-    else {
-      console.log ("quien sos vos?");
+    this.Cargar();
+  }
+
+  Cargar() {
+    let jugador :Jugador = JSON.parse(localStorage.getItem("jugador"));
+    if (jugador) {
+      this.nombreUsuario = jugador.nombreUsuario;
+    } else {
+      this.nombreUsuario = "";
     }
   }
 
-  Juego(tipo: string) {
+  GoTo(tipo: string) {
     switch (tipo) {
       case 'Adivina':
         this.router.navigate(['/juegos/adivina-el-numero']);
@@ -31,6 +37,11 @@ export class HomeComponent implements OnInit {
       case 'Agilidad':
         this.router.navigate(['/juegos/agilidad-aritmetica']);
         break;
+      case 'PPT':
+        this.router.navigate(['/juegos/piedra-papel-tijera']);
+        break;
+      case 'Anagrama':
+        this.router.navigate(['/juegos/anagrama']);
     }
   }
 
