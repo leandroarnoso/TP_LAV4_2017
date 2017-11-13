@@ -3,18 +3,18 @@
   <app-header [title]="nuevoJuego.nombre" [nombreUsuario]="jugador.nombreUsuario"></app-header>
 
   <div class="container">
-      <h3><b>Instrucciones de juego:</b></h3>
-      <h4>Tienes 10 segundos para resolver cada operacion matematica.</h4>
-      <h4>El puntaje sera la cantidad de segundos restantes por 1000.</h4>
-      <h4>Las divisiones son enteras y se redondean hacia abajo Ej: 9 / 5 = 1.</h4>
+    <h3><i class="fa fa-info-circle"></i><b> Instrucciones de juego:</b></h3>
+    <h4>Tienes 10 segundos para resolver cada operacion matematica.</h4>
+    <h4>El puntaje sera la cantidad de segundos restantes por 1000.</h4>
+    <h4>Las divisiones son enteras. Ej: 9 / 5 = 1.</h4>
   </div>
 
   <form name="juego" id="juego">
 
-    <label><b>{{ nuevoJuego.numero1}} {{ nuevoJuego.operador }} {{ nuevoJuego.numero2 }} =</b></label>  
+    <label><b>{{ operacion }}</b></label>  
     <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="Ingrese el resultado de la operacion" name="numeroIngresado" id="input" type="text" class="form-control" style="width:50%"/>
-    <h3>Puntaje: {{ nuevoJuego.puntaje || 0 }}</h3>
-    <h3>Tiempo: {{ tiempo || 0 }} seg.</h3>
+    <h3 id="puntaje">Puntaje: {{ nuevoJuego.puntaje || 0 }}</h3>
+    <h3 id="tiempo">Tiempo: {{ tiempo || 0 }} seg.</h3>
   
     <h2 *ngIf="!ocultarVerificar">
       <button (click)="Verificar()" class="btn btn-success btn-lg" [disabled]="!ValidarNumero(nuevoJuego.numeroIngresado)">
@@ -24,7 +24,7 @@
   
     <h2>
       <button *ngIf="ocultarVerificar" (click)="GenerarNuevo()" class="btn btn-info btn-lg">
-        Dame una operacion a resolver
+        Nueva operación
       </button>
     </h2>
   
@@ -34,11 +34,11 @@
       </p>
     </h2>
 
-    <h3 align="center" *ngIf="nuevoJuego.gano">usted ha resolvido la operacion matematica.</h3>
-    <h3 align="center" *ngIf="!nuevoJuego.gano && tiempo > 0">usted aún no gano.</h3>
-    <h3 align="center" *ngIf="!nuevoJuego.gano && tiempo == 0">usted ha perdido.</h3>
+    <h3 align="center" *ngIf="jugador.gano">Congratulations, ganaste <i class="fa fa-birthday-cake"></i></h3>
+    <h3 align="center" *ngIf="!jugador.gano && tiempo == 0">Perdiste. Mejor suerte para la proxima.</h3>
 
   </form>
 
   <div id="snackbar">{{mensajes}}</div>
+
 </div>

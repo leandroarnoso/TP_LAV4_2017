@@ -5,7 +5,7 @@ import { AdivinaElNumero } from '../../clases/adivina-el-numero';
 import { Jugador } from '../../clases/jugador';
 
 // Constantes
-const INTENTOS_INICIALES = 20;
+const INTENTOS_INICIALES = 10;
 const PUNTAJE_INICIAL = 10000;
 
 @Component({
@@ -24,72 +24,78 @@ export class AdivinaElNumeroComponent implements OnInit {
   ocultarVerificar :boolean;
  
   constructor(private router :Router) {
-    this.nuevoJuego = new AdivinaElNumero(this.jugador);
-    this.ocultarVerificar = false;
-    this.GenerarNuevo();
+    this.nuevoJuego = new AdivinaElNumero("Adivina el Número", this.jugador);
+    this.ocultarVerificar = true;
+    this.intentos = 0;
+    //this.GenerarNuevo();
   }
 
   ngOnInit() {
-    if (!localStorage.getItem("token")) {
+    if (!localStorage.getItem("jugador")) {
       this.router.navigate(["/error"]);
     }
-    this.CambiarColorFondo();
+    this.CambiarFontColor();
   }
 
   GenerarNuevo() {
     this.nuevoJuego.GenerarNuevo(10000);
     console.info("numero Secreto:", this.nuevoJuego.numeroSecreto);  
     this.intentos = INTENTOS_INICIALES;
+    this.ocultarVerificar = false;
+    document.getElementById("input").focus();
+    this.CambiarFontColor();
   }
 
   Verificar()
   {
     this.ocultarVerificar = true;
     console.info("puntaje:", this.nuevoJuego.puntaje);
-    console.info("gano:", this.nuevoJuego.gano);    
+    console.info("gano:", this.jugador.gano);    
     if (this.nuevoJuego.Verificar()) {      
       //this.enviarJuego.emit(this.nuevoJuego);
-      this.MostrarMensaje("Sos un Genio!!!", true);
-      this.nuevoJuego.numeroSecreto = 0;
+      this.MostrarMensaje("Acertaste, te ganaste un flynn paff", true);
     } else {
       this.intentos--;
-      this.CambiarColorFondo();
+      this.CambiarFontColor();
       let mensaje :string = this.GenerarMensaje();
       this.MostrarMensaje(mensaje);
+      this.nuevoJuego.numeroIngresado = null;
     }
-    console.info("puntaje:",this.nuevoJuego.puntaje);
-    console.info("gano:", this.nuevoJuego.gano);   
+    console.info("puntaje:", this.nuevoJuego.puntaje);
+    console.info("gano:", this.jugador.gano);   
   }
 
   private GenerarMensaje() :string {
     let mensaje :string;
     switch (this.intentos) {
+      case 0:
+        mensaje = "Has perdido. Mejor dedicate a la bolita.";
+        break;
       case INTENTOS_INICIALES-1:
         mensaje = "No, intento fallido, animo.";
         break;
       case INTENTOS_INICIALES-2:
-        mensaje = "No, ¿¿¿te estaras Acercando???";
+        mensaje = "No, ¿¿¿te estaras accercando???";
         break;
       case INTENTOS_INICIALES-3:
-        mensaje = "No es, Yo crei que la tercera era la vencida.";
+        mensaje = "No es, yo crei que la tercera era la vencida.";
         break;
       case INTENTOS_INICIALES-4:
-        mensaje = "No era el  " + this.nuevoJuego.numeroIngresado + ".";
+        mensaje = "No era " + this.nuevoJuego.numeroIngresado + ".";
         break;
       case INTENTOS_INICIALES-5:
-        mensaje = " intentos y nada.";
+        mensaje = INTENTOS_INICIALES-5 + " intentos y nada.";
         break;
       case INTENTOS_INICIALES-6:
         mensaje = "Afortunado en el amor.";
         break;
-      case 0:
-        mensaje = "Has perdido."
       
       default:
-        mensaje = "Ya le erraste " + (INTENTOS_INICIALES - this.intentos) + " veces";
+        mensaje = "Ya te has equivocado " + (INTENTOS_INICIALES - this.intentos) + " veces";
         break;
     }
-    return "Intento nro: " + (INTENTOS_INICIALES - this.intentos) + ". " + mensaje + " Ayuda: " + this.nuevoJuego.RetornarAyuda()
+    document.getElementById("input").focus();
+    return mensaje + " Ayuda: " + this.nuevoJuego.RetornarAyuda()
   }  
 
   private MostrarMensaje(mensaje :string = "este es el mensaje", ganador :boolean = false) {
@@ -109,20 +115,27 @@ export class AdivinaElNumeroComponent implements OnInit {
     console.info("objeto", x);
   }  
 
-  private CambiarColorFondo () {
-    var y = document.getElementById("juego");
+  private CambiarFontColor() {
+    let puntaje = document.getElementById("puntaje");
+    let intentos = document.getElementById("intentos");
     if (this.nuevoJuego.puntaje == PUNTAJE_INICIAL) {
-      y.className = "green";
+      puntaje.className = "green";
+      intentos.className = "green";
     } else if (this.nuevoJuego.puntaje >= 7500) {
-      y.className = "yellowgreen";
+      puntaje.className = "yellowgreen";
+      intentos.className = "yellowgreen";
     } else if (this.nuevoJuego.puntaje >= 5000) {
-      y.className = "yellow";
+      puntaje.className = "yellow";
+      intentos.className = "yellow";
     } else if (this.nuevoJuego.puntaje >= 2500) {
-      y.className = "orange";
+      puntaje.className = "orange";
+      intentos.className = "orange";
     } else if (this.nuevoJuego.puntaje >= 0) {
-      y.className = "orangered";
+      puntaje.className = "orangered";
+      intentos.className = "orangered";
     } else {
-      y.className = "red";
+      puntaje.className = "red";
+      intentos.className = "red";
     }
   }
 

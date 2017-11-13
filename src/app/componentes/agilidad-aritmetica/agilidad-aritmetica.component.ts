@@ -22,34 +22,35 @@ export class AgilidadAritmeticaComponent implements OnInit {
   jugador :Jugador = JSON.parse(localStorage.getItem("jugador"));
   mensajes :string;
   tiempo :number;
+  operacion :string;
   repetidor :any;
   ocultarVerificar :boolean;
 
   constructor(private router :Router) {
-    this.nuevoJuego = new AgilidadAritmetica(this.jugador);
+    this.nuevoJuego = new AgilidadAritmetica("Agilidad Aritmetica", this.jugador);
     this.ocultarVerificar = true;
-    this.tiempo = TIEMPO_INICIAL;
+    this.tiempo;
     console.info("Inicio agilidad");  
   }
 
   ngOnInit() {
-    if (!localStorage.getItem("token")) {
+    if (!localStorage.getItem("jugador")) {
       this.router.navigate(["/error"]);
     }
-    this.CambiarColorFondo();
+    this.CambiarColorFont();
   }
 
   GenerarNuevo() {
     this.ocultarVerificar = false;
-    this.nuevoJuego.numeroIngresado = null;
     document.getElementById("input").focus();
     this.tiempo = TIEMPO_INICIAL;
-    this.CambiarColorFondo();
     this.nuevoJuego.GenerarNuevo(0);
+    this.CambiarColorFont();
+    this.operacion = this.nuevoJuego.numero1 + " " + this.nuevoJuego.operador + " " + this.nuevoJuego.numero2 + " = ";
     this.repetidor = setInterval( () => {
       console.log("tiempo: " + this.tiempo);
       this.tiempo--;
-      this.CambiarColorFondo();
+      this.CambiarColorFont();
       if (this.tiempo == 0 ) {
         this.Verificar();
       }
@@ -62,16 +63,13 @@ export class AgilidadAritmeticaComponent implements OnInit {
     if (this.nuevoJuego.Verificar()) {      
       //this.enviarJuego.emit(this.nuevoJuego);
       this.nuevoJuego.puntaje = this.tiempo * 1000;
-      //this.tiempo = TIEMPO_INICIAL;
-      this.MostrarMensaje("Sos un Genio!!!", true);
+      this.MostrarMensaje("Estas echo todo un Alan Turing", true);
     } else {
       this.tiempo = 0;
       let mensaje :string = this.nuevoJuego.numero1 + this.nuevoJuego.operador + this.nuevoJuego.numero2 + " = " + this.nuevoJuego.resultado + "."; 
-      this.MostrarMensaje("Sos un Nabo!!! " + mensaje, false);
-      //let mensaje :string = this.GenerarMensaje();
-      //this.MostarMensaje(mensaje);
+      this.MostrarMensaje("Matematicas nivel Chavo del 8. " + mensaje, false);
     }
-    this.CambiarColorFondo();
+    this.CambiarColorFont();
   }  
 
   private MostrarMensaje(mensaje :string = "este es el mensaje", ganador :boolean = false) {
@@ -91,25 +89,32 @@ export class AgilidadAritmeticaComponent implements OnInit {
     console.info("objeto", x);
   }  
 
-  private CambiarColorFondo () {
-    var y = document.getElementById("juego");
+  private CambiarColorFont () {
+    let puntaje = document.getElementById("puntaje");
+    let tiempo = document.getElementById("tiempo");
     if (this.tiempo == TIEMPO_INICIAL) {
-      y.className = "green";
+      puntaje.className = "green";
+      tiempo.className = "green";
     } else if (this.tiempo > 7) {
-      y.className = "yellowgreen";
+      puntaje.className = "yellowgreen";
+      tiempo.className = "yellowgreen";
     } else if (this.tiempo > 5) {
-      y.className = "yellow";
+      puntaje.className = "yellow";
+      tiempo.className = "yellow";
     } else if (this.tiempo > 3) {
-      y.className = "orange";
+      puntaje.className = "orange";
+      tiempo.className = "orange";
     } else if (this.tiempo >= 1) {
-      y.className = "orangered";
+      puntaje.className = "orangered";
+      tiempo.className = "orangered";
     } else {
-      y.className = "red";
+      puntaje.className = "red";
+      tiempo.className = "red";
     }
   }
 
   private ValidarNumero(numero) :boolean {
-     return !Number.isNaN(numero) && numero > -1001 && numero < 1001
+     return numero !== null && !Number.isNaN(numero) && numero > -1001 && numero < 1001
    }
 
 }

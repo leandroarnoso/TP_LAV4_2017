@@ -5,6 +5,7 @@ export class Jugador {
     email :string;
     password :string;
     sexo :string;
+    gano :boolean;
 
     // CONSTRUCTOR
     constructor(nombreUsuario :string, email :string, sexo :string, password? :string) {
@@ -12,6 +13,7 @@ export class Jugador {
         this.email = email;
         this.sexo = sexo;
         this.password = password;
+        this.gano = false;
     }
 
 }

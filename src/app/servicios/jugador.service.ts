@@ -15,7 +15,7 @@ export class JugadorService {
     return this.miHttp.httpPost(this.api + path, jugador);
   }
 
-  Login(path :string, datos :any){
+  Login(path :string, datos :any) {
     return this.miHttp.httpPost(this.api + path, datos);
 }
 

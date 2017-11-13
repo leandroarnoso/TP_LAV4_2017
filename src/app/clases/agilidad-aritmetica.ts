@@ -11,13 +11,14 @@ export class AgilidadAritmetica extends Juego{
     operador :string;
 
     // CONSTRUCTOR
-    constructor(jugador :Jugador) {
-        super("Velocidad y Agilidad Aritmetica", jugador);
+    constructor(nombre :string, jugador :Jugador) {
+        super(nombre, jugador);
     }
 
     // METODOS 
     GenerarNuevo(puntaje :number) {
-        this.gano = false;
+        this.numeroIngresado = null;
+        this.jugador.gano = false;
         this.puntaje = puntaje;
         this.numero1 = Math.floor((Math.random() * 10) + 1);
         this.numero2 = Math.floor((Math.random() * 10) + 1);
@@ -43,8 +44,8 @@ export class AgilidadAritmetica extends Juego{
 
     Verificar() :boolean {
         if (this.resultado == this.numeroIngresado) {
-            this.gano = true;
+            this.jugador.gano = true;
         }
-        return this.gano;
+        return this.jugador.gano;
     }
 }

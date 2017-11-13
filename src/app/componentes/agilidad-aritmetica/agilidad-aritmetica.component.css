@@ -12,10 +12,13 @@ button:disabled:hover,
 button[disabled]:hover {
     background-color: red;
     border-color: #666666;
-    color: #666666;
+    color: white;
     cursor: not-allowed;
 }
 
+.fa-info-circle {
+    color: #428bca;
+}
 
 .fondo {
     background-image: url(../../../assets/imagenes/home.jpg);
@@ -25,38 +28,38 @@ button[disabled]:hover {
     background-size: cover;
 }
 
-#juego.red {
-    background-color: red;
+.red {
+    color: red;
 }
 
-#juego.orangered {
-    background-color: orangered; 
+.orangered {
+    color: orangered; 
 }
 
-#juego.orange {
-    background-color: orange;
+.orange {
+    color: orange;
 }
 
-#juego.yellow {
-    background-color: yellow;
+.yellow {
+    color: yellow;
 }
 
-#juego.yellowgreen {
-    background-color: yellowgreen;
+.yellowgreen {
+    color: yellowgreen;
 }
 
-#juego.green {
-    background-color: green;
+.green {
+    color: green;
 }
 
-#juego {
+form {
     /*border: 10px solid #f1f1f1;*/
     border-bottom-left-radius: 4%;
     border-bottom-right-radius: 4%;
     margin: 5%;
     margin-top: 0;
     padding: 20px;
-    /*background-color:yellowgreen;*/
+    background-color: #999;
 }
 
 input[type=text], input[type=password] {
@@ -109,7 +112,7 @@ img.avatar {
     margin-bottom: 0;
     width: 90%;
     padding: 20px;
-    background-image: url(../../../assets/imagenes/game-description.jpg);
+    background-image: url(../../../assets/imagenes/game-description.png);
     height: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -117,7 +120,7 @@ img.avatar {
 }
 
 .container h3 {
-    color: grey;
+    color: #428bca;
 }
 
 span.psw {

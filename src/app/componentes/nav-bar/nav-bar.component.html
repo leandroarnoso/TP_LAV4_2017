@@ -1,20 +1,30 @@
+<nav class="navbar navbar-inverse">
 <div class="container-fluid">
+    <ul class="nav navbar-nav navbar-header">
+      <li class="active"><a class="navbar-brand" href="/">Inicio</a></li>
+    </ul>
+    <ul *ngIf="nombreUsuario" class="nav navbar-nav navbar-header">
+      <li><a href="/juegos/adivina-el-numero"><i class="fa fa-gamepad"></i> Adivina el Numero</a></li>
+      <li><a href="/juegos/agilidad-aritmetica"><i class="fa fa-gamepad"></i> Agilidad Aritmetica</a></li>
+      <li><a href="/juegos/piedra-papel-tijera"><i class="fa fa-gamepad"></i> Piedra, Papel o Tijera</a></li>
+      <li><a href="/juegos/anagrama"><i class="fa fa-gamepad"></i> Anagrama</a></li>
+    </ul>
   <ul *ngIf="!nombreUsuario" class="nav navbar-nav navbar-right">
-    <li><a href="/registro"><span class="glyphicon glyphicon-user"></span>Registrarse</a></li>
+    <li><a href="/registro"><span class="glyphicon glyphicon-pencil"></span> Registrarse</a></li>
     <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Ingresar</a></li>
   </ul>
   <ul *ngIf="nombreUsuario" class="nav navbar-nav navbar-right">
     <li class="dropdown">
-      <a class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-      {{nombreUsuario}} <span class="caret"></span></a>
+      <a class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
+        {{nombreUsuario}} <span class="caret"></span></a>
       <ul class="dropdown-menu">
-        <li><a >Perfil</a></li>
-        <li><a >Cambiar contraseña</a></li>
+        <li><a>Perfil</a></li>
+        <li><a>Cambiar contraseña</a></li>
         <li role="separator" class="divider"></li>
         <li><a (click)="Desloguear()">Cerrar Sesion</a></li>
       </ul>
     </li>
-    <!--<li><a href="#"><span class="glyphicon glyphicon-user"></span>{{nombreUsuario}}</a></li>-->
   </ul>
 </div>
+</nav>
 

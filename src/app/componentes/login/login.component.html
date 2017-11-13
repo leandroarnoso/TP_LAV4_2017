@@ -1,46 +1,49 @@
+<div class="fondo">
+  <form action="return true;">
+    
+    <div class="container">
+      <form (ngSubmit)="MoverBarraDeProgreso()" [formGroup]="loginForm">
 
-  <div class="jumbotron">
-    <form action="return true;">
-      <div class="imgcontainer">
-        <img src="./assets/imagenes/login.png" alt="Avatar" class="avatar" max-width="104" >
-      </div>
+        <div class="imgcontainer">
+          <img src="./assets/imagenes/login.png" alt="Avatar" class="avatar" max-width="104" >
+        </div>
 
-      <div class="container" id="fondo">
-        <form (ngSubmit)="MoverBarraDeProgreso()" [formGroup]="loginForm">
-
-          <div class="form-group">
-            <label><b>Email</b></label>
-            <input type="text" placeholder="Email" [formControl]="email" name="email" required>
-            <div class="alert alert-danger" *ngIf="!email.valid && email.touched">
-              El email debe contener entre 5 y 30 caracteres.
-            </div>
+        <legend><b>Sign In</b></legend>
+        <div class="form-group">
+          <label><b>Email:</b></label>
+          <input type="text" placeholder="Email" [formControl]="email" name="email" required>
+          <div class="alert alert-danger" *ngIf="!email.valid && email.touched">
+            El email debe contener entre 5 y 30 caracteres.
           </div>
+        </div>
 
-          <div class="form-group">
-            <label><b>Contraseña</b></label>
-            <input type="password" placeholder="Contraseña" [formControl]="password" name="password" required>
-            <div class="alert alert-danger" *ngIf="!password.valid && password.touched">
-              La contraseña debe contener entre 8 y 12 caracteres alfanumericos.
-            </div>
+        <div class="form-group">
+          <label><b>Contraseña:</b></label>
+          <input type="password" placeholder="Contraseña" [formControl]="password" name="password" required>
+          <div class="alert alert-danger" *ngIf="!password.valid && password.touched">
+            La contraseña debe contener entre 8 y 12 caracteres alfanumericos.
           </div>
+        </div>
               
-          <button type="submit" *ngIf="!logeando" [disabled]="!loginForm.valid"> Ingresar</button>
+        <button type="submit" class="btn btn-success" *ngIf="!logeando" [disabled]="!loginForm.valid">
+          <i class="fa fa-sign-in"></i> Ingresar
+        </button>
+        <button type="button" class="btn btn-warning" *ngIf="!logeando" (click)="CompletarForm()">Autocompletar</button>
         
-          <div *ngIf="logeando" class="progress">
-              <div class="progress-bar progress-bar-info progress-bar-striped active" [class]="clase" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" [style.width]="ProgresoDeAncho" >
-                {{progresoMensaje}} - {{progreso}}%
-              </div>
+        <div *ngIf="logeando" class="progress">
+          <div class="progress-bar progress-bar-info progress-bar-striped active" [class]="clase" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" [style.width]="ProgresoDeAncho" >
+            {{progresoMensaje}} - {{progreso}}%
           </div>
+        </div>
         
-          <input type="checkbox"> Recordar mis datos
-        </form>
-      </div>
+        <input type="checkbox"> Recordarme
+        
+        <legend><br></legend>
+        <button type="button" class="aceptbtn" routerLink="/registro" >Registrase</button>
+        <span class="psw">¿Olvidaste <a href="#">tu contraseña?</a></span>
 
-      <div class="container">
-        <!--<button type="button" class="cancelbtn">Cancelar</button>-->
-        <button type="button" class="aceptbtn" routerLink="/registro" >Registrarse</button>
-        <span class="psw">Olvidaste <a href="#">tu contraseña?</a></span>
-      </div>
-     
-    </form>
-  </div>
+      </form>
+    </div>
+
+  </form>
+</div>

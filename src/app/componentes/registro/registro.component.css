@@ -3,15 +3,38 @@
 }
 
 .ng-invalid[required], .ng-invalid.required  {
-  border-left: 5px solid #a94442; /* green */
-}
-
-.ng-invalid:not(registroForm)  {
   border-left: 5px solid #a94442; /* red */
 }
 
+/*.ng-invalid:not(registroForm)  {
+  border-left: 5px solid #a94442;  red
+}*/
+
+.fa {
+    padding: 3px;
+}
+
+.fa-asterisk {
+    font-size: 8px;
+    position: relative;
+    bottom: 4px;
+}
+
+.fa-check {
+    color: #42A948;
+}
+
+.fondo {
+    padding: 60px;
+    background-image: url(../../../assets/imagenes/registro.jpg);
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
 input[type=text], input[type=password] {
-    width: 100%;
+    width: 94%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -21,13 +44,14 @@ input[type=text], input[type=password] {
 
 /* Set a style for all buttons */
 button {
-    background-color: #4CAF50;
+    /*background-color: #4CAF50;*/
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: 35%;
+ 
 }
 
 button:hover {opacity: 0.8;}
@@ -40,10 +64,19 @@ button[disabled]{
   cursor: not-allowed;
   padding: 14px 20px;
 }
+button:disabled:hover,
+button[disabled]:hover{
+  /*border: 1px solid #999999;*/
+  background-color: #f44336;
+  color: white;
+  cursor: not-allowed;
+  padding: 14px 20px;
+}
 
 /* Animacion para el alert*/
 .alert {
     animation: 1.5s alertAnim forwards;
+    width: 94%;
 }
 
 @keyframes alertAnim {
@@ -57,18 +90,35 @@ button[disabled]{
     }
 }
 
-/* Extra styles for the cancel button */
 .cancelbtn {
-    padding: 14px 20px;
     background-color: #f44336;
+    float: left; 
 }
 
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn,.signupbtn {float:left;width:50%}
+.signupbtn {
+    float: right; 
+}
 
 /* Add padding to container elements */
 .container {
     padding: 16px;
+    margin: auto;
+    width: 50%;
+    background-color: whitesmoke;
+}
+
+.ng-invalid:not(registroForm) .container {
+    border: 3px solid #a94442;
+}
+.ng-invalid:not(registroForm) legend {
+    border-bottom-color: #a94442;
+}
+
+.ng-valid:not(registroForm) .container {
+    border: 3px solid #42A948;
+}
+.ng-valid:not(registroForm) legend {
+    border-bottom-color: #42A948;
 }
 
 /* The Modal (background) */

@@ -59,31 +59,54 @@ export class LoginComponent implements OnInit {
   }
 
   Loguear() {
-    let datos = {
+
+    let listaUsuarios :Array<Jugador> = JSON.parse(localStorage.getItem("usuarios"));
+    if (listaUsuarios) {
+      /*let usuario = listaUsuarios.filter( usuario => {
+        return usuario.email == this.loginForm.get("email").value && usuario.password == this.loginForm.get("password").value;
+      });
+      if (usuario[0]) {
+        localStorage.setItem("jugador", JSON.stringify(usuario[0]));
+        this.router.navigate(['']);
+      } else {
+        console.log("Email y contraseña erronea");
+      }
+    } else {
+      console.log("No se pudo conectar al servidor");
+    }*/
+      listaUsuarios.forEach(usuario => {
+        if (usuario.email == this.loginForm.get("email").value && usuario.password == this.loginForm.get("password").value) {
+          localStorage.setItem("jugador", JSON.stringify(usuario));
+          this.router.navigate(['']);
+        } else {
+        console.log("Email y/o Contraseña erronea");
+        }
+      });
+    } else {
+      console.log("No se pudo conectar al servidor");
+    }
+    this.logeando = false;
+    this.progreso = 0;
+    this.ProgresoDeAncho = "0%";
+    /*let datos = {
       email: this.loginForm.get("email").value,
       password: this.loginForm.get("password").value
     };
-    this.miJugadorService.Login("usuario", datos)
-    .subscribe( res => {
-      if (res) {
-        let jugador :Jugador = new Jugador(res.nombre_usuario, res.email, res.sexo);
-        localStorage.setItem("jugador", JSON.stringify(jugador));
-        localStorage.setItem("token", JSON.stringify(res.token));
-        this.router.navigate(['']);
-      } else {
-        console.log("usuario no valido");
-      }
-    })
+    this.miJugadorService.Login("usuario", datos);*/
+  }
+
+  CompletarForm() {
+    this.loginForm.setValue({email: "admin@admin.com", password: "12345678"});
+    //this.loginForm.get("password").value = "12345678";
   }
 
   MoverBarraDeProgreso() {
-    
+    console.log("inicio");
     this.logeando = true;
     this.clase = "progress-bar progress-bar-danger progress-bar-striped active";
     this.progresoMensaje = "NSA spy..."; 
     let timer = TimerObservable.create(200, 50);
     this.subscription = timer.subscribe(t => {
-      console.log("inicio");
       this.progreso = this.progreso + 1;
       this.ProgresoDeAncho = this.progreso + 20 + "%";
       switch (this.progreso) {

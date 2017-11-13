@@ -6,7 +6,6 @@ export  abstract class Juego {
     nombre :string;
     jugador :Jugador;
     puntaje :number;
-    gano :boolean;
     
     // CONSTRUCTOR
     constructor(nombre :string, jugador :Jugador) {
@@ -15,6 +14,6 @@ export  abstract class Juego {
     }
 
     // METODOS
-    public abstract GenerarNuevo(puntaje :number);
+    public abstract GenerarNuevo(puntaje? :number);
     public abstract  Verificar() :boolean;
 }

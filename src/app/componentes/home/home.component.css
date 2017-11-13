@@ -26,7 +26,8 @@ img {
     height: 200px;
 }/* Add some padding inside the card container */
 .container {
-    /*padding: 2px 16px;*/padding: 20px 20px
+    /*padding: 2px 16px;*/
+    padding: 20px 100px;
 }
 
 

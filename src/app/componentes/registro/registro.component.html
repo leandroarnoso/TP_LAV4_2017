@@ -9,37 +9,43 @@
     </div>
   </div>
 
-  <div>
+  <div class="fondo">
     <form (ngSubmit)="Registrar()" [formGroup]="registroForm">
       <div class="container">
 
+        <legend><b>Registro:</b></legend>
+
         <div class="form-group">
-          <label>Nombre de Usuario</label>
+          <label>Nombre de Usuario:</label>
           <input type="text" placeholder="Nombre de Usuario" [formControl]="nombreUsuario" name="nombreUsuario" required>
+          <i *ngIf="!nombreUsuario.valid" class="fa fa-asterisk"></i><i *ngIf="nombreUsuario.valid" class="fa fa-check"></i>
           <div class="alert alert-danger" *ngIf="!nombreUsuario.valid && nombreUsuario.touched">
-            El nombre de usuario debe contener entre 6 y 20 caracteres alfanumericos.
+            El nombre de usuario debe contener entre 3 y 20 caracteres alfanumericos.
           </div>
         </div>
 
         <div class="form-group">
-          <label><b>Email</b></label>
+          <label><b>Email:</b></label>
           <input type="text" placeholder="Email" [formControl]="email" name="email" required>
+          <i *ngIf="!email.valid" class="fa fa-asterisk"></i><i *ngIf="email.valid" class="fa fa-check"></i>
           <div class="alert alert-danger" *ngIf="!email.valid && email.touched">
             El email debe contener entre 5 y 30 caracteres.
           </div>
         </div>
   
         <div class="form-group">
-          <label><b>Contraseña</b></label>
+          <label><b>Contraseña:</b></label>
           <input type="password" placeholder="Contraseña" [formControl]="password" name="password" required>
+          <i *ngIf="!password.valid" class="fa fa-asterisk"></i><i *ngIf="password.valid" class="fa fa-check"></i>
           <div class="alert alert-danger" *ngIf="!password.valid && password.touched">
             La contraseña debe contener entre 8 y 12 caracteres alfanumericos.
           </div>
         </div>
   
         <div class="form-group">
-          <label><b>Repita la Contraseña</b></label>
+          <label><b>Repita la Contraseña:</b></label>
           <input type="password" placeholder="Repita la Contraseña" [formControl]="pswRepeat" name="pswRepeat" required>
+          <i *ngIf="!pswRepeat.valid" class="fa fa-asterisk"></i><i *ngIf="pswRepeat.valid" class="fa fa-check"></i>
           <div class="alert alert-danger" *ngIf="!pswRepeat.valid && pswRepeat.touched">
             Las contraseñas no coinciden.
           </div>
@@ -48,26 +54,27 @@
         <div class="form-group">
           <label><b>Sexo:</b></label>
           <select [formControl]="sexo">
-              <option *ngFor="let val of sexos" [value]="sexo">{{val | sexo}}</option>
+              <option *ngFor="let val of sexos" [value]="val">{{val | sexo}}</option>
           </select>
-          <!--<h5><b>Sexo:</b></h5>
-          <label class="center-block"><input type="radio" [formControl]="sexo" value="M">Masculino</label>
-          <label class="center-block"><input type="radio" [formControl]="sexo" value="F">Femenino</label>-->
+          <i *ngIf="!sexo.valid" class="fa fa-asterisk"></i><i *ngIf="sexo.valid" class="fa fa-check"></i>
           <div class="alert alert-danger" *ngIf="!sexo.valid && sexo.touched">
             Debe especificar un sexo.
           </div>
         </div><br>
 
         <div class="form-group">
-          <input type="checkbox" [formControl]="condiciones" required> Acepto los <a onclick="document.getElementById('terminos').style.display='block'" style="width:auto;">Terminos y condiciones</a>
+          <input type="checkbox" [formControl]="condiciones" required> 
+            Acepto los <a onclick="document.getElementById('terminos').style.display='block'" style="width:auto;cursor:pointer;">Terminos y condiciones</a>
           <div class="alert alert-danger" *ngIf="!condiciones.valid && condiciones.touched">
             Debe aceptar los terminos y condiciones.
           </div>
         </div><br>
 
         <div class="clearfix">
-          <button routerLink="/login" class="cancelbtn">Cancelar</button>
-          <button type="submit" class="signupbtn" [disabled]="!registroForm.valid">Registrarme</button>
+          <button routerLink="/login" class="btn btn-danger cancelbtn">Cancelar</button>
+          <button type="submit" class="btn btn-success signupbtn" [disabled]="!registroForm.valid">
+            <i class="fa fa-pencil-square-o"></i> Registrarme
+          </button>
         </div>
       </div>
     </form>

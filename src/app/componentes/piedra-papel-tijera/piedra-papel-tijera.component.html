@@ -1,3 +1,62 @@
-<p>
-  piedra papel tijera works!
-</p>
+<div class="fondo">
+
+  <app-header [title]="nuevoJuego.nombre" [nombreUsuario]="jugador.nombreUsuario"></app-header>
+
+  <div class="container-description">
+    <h3><i class="fa fa-info-circle"></i><b> Instrucciones de juego:</b></h3>
+    <h4>Es al mejor de 5 rondas.</h4>
+    <h4>Piedra vence Tijera, Tijera vence Papel y Papel vence Piedra.</h4>
+    <h4>Cada ronda ganada son 2000 puntos.</h4>
+    <h4>Si ganas se sumaran 2000 puntos si solo perdiste una ronda y 4000 si no perdiste ninguna.</h4>
+  </div>
+
+  <form name="juego" id="juego">
+
+    <div *ngIf="!ocultarVerificar && nuevoJuego.derrotas < 3 && !jugador.gano" class="container">
+      <h1 align="center"><b>Elegi una opcion:</b></h1>  
+    
+      <div (click)="Verificar(1)" class="card">
+        <h2>Piedra</h2>
+        <img class="img-thumbnail"  src="./assets/imagenes/piedra.jpg" alt="Avatar" style="width:100%">
+      </div>
+
+      <div (click)="Verificar(2)" class="card">
+        <h2>Papel</h2>
+        <img class="img-thumbnail"   src="./assets/imagenes/papel.jpg" alt="Avatar" style="width:100%">
+      </div>
+
+      <div (click)="Verificar(3)" class="card">
+        <h2>Tijera</h2>
+        <img class="img-thumbnail" src="./assets/imagenes/tijera.jpg" alt="Avatar" style="width:100%">
+      </div>
+
+      <h3 align="center">
+        <p class="green">Victorias: {{ nuevoJuego.victorias || 0 }}</p>
+        <p class="yellow"> Empates: {{ nuevoJuego.empates || 0 }} </p>
+        <p class="red"> Derrotas: {{ nuevoJuego.derrotas || 0 }} </p>
+      </h3>
+    </div>
+
+    <h3 id="puntaje">Puntaje: {{ nuevoJuego.puntaje || 0 }}</h3>
+    <h3 id="ronda">Ronda Nro: {{ ronda || 0 }}</h3>
+  
+    <h2>
+      <button *ngIf="jugador.gano || nuevoJuego.derrotas == 3 || ronda == 0" (click)="GenerarNuevo()" class="btn btn-info btn-lg">
+        Iniciar Juego
+      </button>
+    </h2>
+  
+    <h2>
+      <p align="center" *ngIf="!ocultarVerificar && nuevoJuego.derrotas < 3 && !jugador.gano" ><i class="fa fa-spinner fa-pulse"></i>
+        Esperando opcion
+      </p>
+    </h2>
+
+    <h3 align="center" *ngIf="!ocultarVerificar && jugador.gano">You Win </h3>
+    <h3 align="center" *ngIf="!ocultarVerificar && nuevoJuego.derrotas == 3">You Lose </h3>
+    <h3 align="center" *ngIf="!ocultarVerificar && (nuevoJuego.derrotas == 0 || nuevoJuego.victorias == 0)">Flawless Victory</h3>
+
+  </form>
+
+  <div id="snackbar">{{mensajes}}</div>
+</div>

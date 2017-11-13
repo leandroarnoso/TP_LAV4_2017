@@ -1,6 +1,22 @@
-.container-fluid {
+/*.container-fluid {
     background-color: #555;
+}*/
+
+li a.navbar-brand {
+    color: yellowgreen;
 }
+
+.glyphicon {
+    font-size: 12px;
+}
+
+nav {
+    border-radius: 0;
+    padding: none;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
 
 ul {
     list-style-type: none;
@@ -9,24 +25,20 @@ ul {
 }
 
 li a {
-    display: block;
-    padding: 8px 6px;
     text-decoration: none;
     cursor: pointer;
     color:yellowgreen;
 }
 
 .dropdown-menu {
-    background-color: #555;
+    background-color: #222;
     color:yellowgreen;
+}
+.dropdown-menu a:hover{
+    background-color: black;
+    color: white;
 }
 
 .divider {
     background-color: yellowgreen;
-}
-
-/* Change the link color on hover */
-li a:hover {
-    background-color: whitesmoke;
-    color: yellowgreen;
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { FormsModule, FormBuilder, FormGroup, FormControl, Validators }   from '@angular/forms';
 // Clases 
 import { Jugador } from '../../clases/jugador';
@@ -18,7 +19,7 @@ export class RegistroComponent implements OnInit {
 
   public nombreUsuario :FormControl = new FormControl('', [
     Validators.required,
-    Validators.minLength(6), 
+    Validators.minLength(3), 
     Validators.maxLength(20),
     this.ValidarAlfanumerico 
   ]);
@@ -57,7 +58,7 @@ export class RegistroComponent implements OnInit {
     condiciones: this.condiciones
   });
 
-  constructor(private formBuilder :FormBuilder, private miJugadorService :JugadorService) { }
+  constructor(private formBuilder :FormBuilder, private miJugadorService :JugadorService, private router :Router) { }
 
   ngOnInit() {
   }
@@ -72,26 +73,33 @@ export class RegistroComponent implements OnInit {
   }
 
   ValidarAlfanumerico(input: FormControl): { [key: string]: boolean } {
-    if (input.value.length && !input.value.match(/^[a-z0-9]+$/i)) {
+    if (input.value.length && !input.value.match(/^[a-zA-Z0-9]+$/i)) {
       return { esAlfanumerico: true };
     }
     return null;
   }
 
   Registrar() {
-    /*let jugador = {
-      nombreUsuario: this.registroForm.get('nombreUsuario').value,
-      email: this.registroForm.get('email').value,
-      password: this.registroForm.get('password').value,
-      sexo: this.registroForm.get('sexo').value
-    };*/
+    let listaUsuarios :Array<Jugador> = JSON.parse(localStorage.getItem("usuarios"));
     let jugador :Jugador = new Jugador(
       this.registroForm.get('nombreUsuario').value, 
       this.registroForm.get('email').value,
       this.registroForm.get('sexo').value,
       this.registroForm.get('password').value
     );
-    this.miJugadorService.Crear("usuario/alta", jugador); 
+    if (!listaUsuarios) {
+      listaUsuarios = new Array();
+    }
+    listaUsuarios.push(jugador);
+    localStorage.setItem("usuarios", JSON.stringify(listaUsuarios));
+    this.router.navigate(["/login"]);
+    /*let jugador :Jugador = new Jugador(
+      this.registroForm.get('nombreUsuario').value, 
+      this.registroForm.get('email').value,
+      this.registroForm.get('sexo').value,
+      this.registroForm.get('password').value
+    );
+    this.miJugadorService.Crear("usuario/alta", jugador);*/
   }
  
 }

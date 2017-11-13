@@ -20,7 +20,6 @@ export class NavBarComponent implements OnInit {
   }
 
   Desloguear() {
-    localStorage.removeItem("token");
     localStorage.removeItem("jugador");
     this.nombreUsuario = "";
     this.EventDeslogueo.emit(this.EventDeslogueo);
