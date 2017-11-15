@@ -12,12 +12,6 @@ import { HomeComponent } from './componentes/home/home.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { QuienSoyComponent } from './componentes/quien-soy/quien-soy.component';
-import { ErrorComponent } from './componentes/error/error.component';
-// Pipes
-import { SexoPipe } from './pipes/sexo.pipe';
-// Servicios
-import { MiHttpService } from "./servicios/mi-http.service";
-import { JugadorService } from "./servicios/jugador.service";
 import { HeaderComponent } from './componentes/header/header.component';
 import { NavBarComponent } from './componentes/nav-bar/nav-bar.component';
 import { JuegosComponent } from './componentes/juegos/juegos.component';
@@ -25,6 +19,17 @@ import { AdivinaElNumeroComponent } from './componentes/adivina-el-numero/adivin
 import { AgilidadAritmeticaComponent } from './componentes/agilidad-aritmetica/agilidad-aritmetica.component';
 import { PiedraPapelTijeraComponent } from './componentes/piedra-papel-tijera/piedra-papel-tijera.component';
 import { AnagramaComponent } from './componentes/anagrama/anagrama.component';
+import { AhorcadoComponent } from './componentes/ahorcado/ahorcado.component';
+import { ListadoDeResultadosComponent } from './componentes/listado-de-resultados/listado-de-resultados.component';
+import { ErrorComponent } from './componentes/error/error.component';
+// Pipes
+import { SexoPipe } from './pipes/sexo.pipe';
+import { FechaPipe } from './pipes/fecha.pipe';
+import { HorarioPipe } from './pipes/horario.pipe';
+// Servicios
+import { MiHttpService } from "./servicios/mi-http.service";
+import { JugadorService } from "./servicios/jugador.service";
+
 
 @NgModule({
   declarations: [
@@ -33,15 +38,19 @@ import { AnagramaComponent } from './componentes/anagrama/anagrama.component';
     LoginComponent,
     RegistroComponent,
     QuienSoyComponent,
-    ErrorComponent,
-    SexoPipe,
     HeaderComponent,
     NavBarComponent,
     JuegosComponent,
     AdivinaElNumeroComponent,
     AgilidadAritmeticaComponent,
     PiedraPapelTijeraComponent,
-    AnagramaComponent
+    AnagramaComponent,
+    AhorcadoComponent,
+    ListadoDeResultadosComponent,
+    ErrorComponent,
+    SexoPipe,
+    FechaPipe,
+    HorarioPipe
   ],
   imports: [
     BrowserModule,
