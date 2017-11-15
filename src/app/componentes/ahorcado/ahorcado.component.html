@@ -1,0 +1,62 @@
+<div class="fondo">
+
+  <app-header [title]="nuevoJuego.nombre" [nombreUsuario]="jugador.nombreUsuario"></app-header>
+
+  <div class="container">
+    <h3><i class="fa fa-info-circle"></i><b> Instrucciones de juego:</b></h3>
+    <h4>Tienes 7 intentos para descubrir la palabra.</h4>
+    <h4>Cada intento fallido te restara 2000 puntos.</h4>
+  </div>
+
+  <form name="juego" id="juego">
+
+    <h3 id="puntaje">Puntaje: {{ nuevoJuego.puntaje || 0}}</h3>
+    <h3 id="intentos">Intentos Restantes: {{ nuevoJuego.intentos || 0}}</h3>
+
+    <div *ngIf="!nuevoJuego.jugador.gano">
+      <img class="img-thumbnail" src="{{pathAhorcado}}" alt="Avatar">
+    </div>
+    
+    <div *ngIf="!nuevoJuego.jugador.gano && nuevoJuego.intentos > 0">
+      <div class="palabraSecreta" *ngFor="let letra of nuevoJuego.palabraSecreta.split('')">
+        <h2 *ngIf="nuevoJuego.letrasCorrectas.indexOf(letra) > -1">{{ letra }}</h2>
+        <h2 *ngIf="nuevoJuego.letrasCorrectas.indexOf(letra) == -1">_</h2>
+      </div>
+    </div>
+
+    <div *ngIf="!nuevoJuego.jugador.gano && nuevoJuego.intentos > 0">
+      <div class="letrasErroneas" *ngFor="let letra of nuevoJuego.letrasErroneas">
+        <h2>{{ letra }}</h2>
+      </div>
+    </div>
+
+    <div *ngIf="!ocultarVerificar && !nuevoJuego.jugador.gano && nuevoJuego.intentos > 0">
+      <div class="opciones" *ngFor="let letra of nuevoJuego.abecedario">
+        <button class="btn btn-success" *ngIf="nuevoJuego.letrasCorrectas.indexOf(letra) > -1" [disabled]="true"> {{ letra }} </button>
+        <button class="btn btn-danger" *ngIf="nuevoJuego.letrasErroneas.indexOf(letra) > -1" [disabled]="true"> {{ letra }} </button>
+        <button class="btn btn-info" *ngIf="nuevoJuego.letrasCorrectas.indexOf(letra) == -1 && nuevoJuego.letrasErroneas.indexOf(letra) == -1" (click)="Verificar(letra)"> {{ letra }} </button>
+      </div>
+    </div>
+  
+    <h2>
+      <button *ngIf="nuevoJuego.jugador.gano || !nuevoJuego.intentos" (click)="GenerarNuevo()"  class="btn btn-info btn-lg">
+        Nueva Palabra
+      </button>
+    </h2>
+  
+    <h2>
+      <p align="center" *ngIf="!ocultarVerificar && !nuevoJuego.jugador.gano && nuevoJuego.intentos > 0" ><i class="fa fa-spinner fa-pulse"></i>
+        Esperando que elija una letra
+      </p>
+    </h2>
+
+    <h3 align="center" *ngIf="!ocultarVerificar && nuevoJuego.jugador.gano">Esa era la palabra.</h3>
+    <h3 align="center" *ngIf="!ocultarVerificar && !nuevoJuego.jugador.gano && nuevoJuego.intentos == 0">Perdiste. Mejor suerte para la proxima.</h3>
+
+  </form>
+
+  <div id="snackbar">{{mensajes}}</div>
+
+  <app-listado-de-resultados [listado]="listado" [nombreJuego]="nuevoJuego.nombre" [nombreJugador]="jugador.nombreUsuario"></app-listado-de-resultados>
+  
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription, Observable } from "rxjs";
 import { TimerObservable } from "rxjs/observable/TimerObservable";
@@ -15,9 +15,8 @@ const TIEMPO_INICIAL = 10;
   styleUrls: ['./agilidad-aritmetica.component.css']
 })
 export class AgilidadAritmeticaComponent implements OnInit {
-  //@Output() 
-  //enviarJuego :EventEmitter<any> = new EventEmitter<any>();
 
+  listado :Array<any>;
   nuevoJuego :AgilidadAritmetica;
   jugador :Jugador = JSON.parse(localStorage.getItem("jugador"));
   mensajes :string;
@@ -36,6 +35,10 @@ export class AgilidadAritmeticaComponent implements OnInit {
   ngOnInit() {
     if (!localStorage.getItem("jugador")) {
       this.router.navigate(["/error"]);
+    }
+    this.listado = JSON.parse(localStorage.getItem("resultados"));
+    if (!this.listado) {
+      this.listado = new Array();
     }
     this.CambiarColorFont();
   }
@@ -61,7 +64,6 @@ export class AgilidadAritmeticaComponent implements OnInit {
     this.ocultarVerificar = true;
     clearInterval(this.repetidor);
     if (this.nuevoJuego.Verificar()) {      
-      //this.enviarJuego.emit(this.nuevoJuego);
       this.nuevoJuego.puntaje = this.tiempo * 1000;
       this.MostrarMensaje("Estas echo todo un Alan Turing", true);
     } else {
@@ -69,8 +71,20 @@ export class AgilidadAritmeticaComponent implements OnInit {
       let mensaje :string = this.nuevoJuego.numero1 + this.nuevoJuego.operador + this.nuevoJuego.numero2 + " = " + this.nuevoJuego.resultado + "."; 
       this.MostrarMensaje("Matematicas nivel Chavo del 8. " + mensaje, false);
     }
+    this.GuardarJuego();
     this.CambiarColorFont();
   }  
+
+  private GuardarJuego() {
+    let resultado = {
+      juego: this.nuevoJuego.nombre,
+      jugador: this.nuevoJuego.jugador.nombreUsuario,
+      puntaje: this.nuevoJuego.puntaje,
+      fecha: new Date()
+    }
+    this.listado.push(resultado);
+    localStorage.setItem("resultados", JSON.stringify(this.listado));
+  }
 
   private MostrarMensaje(mensaje :string = "este es el mensaje", ganador :boolean = false) {
     this.mensajes = mensaje;    

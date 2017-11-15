@@ -1,31 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 // Clases
-import { AdivinaElNumero } from '../../clases/adivina-el-numero';
+import { Ahorcado } from '../../clases/ahorcado';
 import { Jugador } from '../../clases/jugador';
 
 // Constantes
-const INTENTOS_INICIALES = 10;
-const PUNTAJE_INICIAL = 10000;
+const PUNTAJE_INICIAL = 12000;
 
 @Component({
-  selector: 'app-adivina-el-numero',
-  templateUrl: './adivina-el-numero.component.html',
-  styleUrls: ['./adivina-el-numero.component.css']
+  selector: 'app-ahorcado',
+  templateUrl: './ahorcado.component.html',
+  styleUrls: ['./ahorcado.component.css']
 })
-export class AdivinaElNumeroComponent implements OnInit {
+export class AhorcadoComponent implements OnInit {
 
   listado :Array<any>;
-  nuevoJuego: AdivinaElNumero;
+  nuevoJuego: Ahorcado;
   jugador :Jugador = JSON.parse(localStorage.getItem("jugador"));
   mensajes :string;
-  intentos :number;
+  pathAhorcado :string;
   ocultarVerificar :boolean;
  
   constructor(private router :Router) {
-    this.nuevoJuego = new AdivinaElNumero("Adivina el Número", this.jugador);
+    this.nuevoJuego = new Ahorcado("Ahorcado", this.jugador);
     this.ocultarVerificar = true;
-    this.intentos = 0;
   }
 
   ngOnInit() {
@@ -41,27 +39,24 @@ export class AdivinaElNumeroComponent implements OnInit {
 
   GenerarNuevo() {
     this.nuevoJuego.GenerarNuevo(PUNTAJE_INICIAL);
-    console.info("numero Secreto:", this.nuevoJuego.numeroSecreto);  
-    this.intentos = INTENTOS_INICIALES;
     this.ocultarVerificar = false;
-    document.getElementById("input").focus();
     this.CambiarFontColor();
+    this.pathAhorcado = "./assets/imagenes/ahorcado" + this.nuevoJuego.intentos + ".png";
   }
 
-  Verificar()
+  Verificar(letra :string)
   {
+    this.nuevoJuego.letraIngresada = letra;
     this.ocultarVerificar = true; 
     if (this.nuevoJuego.Verificar()) {      
-      this.intentos = 0;
-      this.MostrarMensaje("Acertaste, te ganaste un flynn paff", true);
+      this.MostrarMensaje("Has sobrevivido.", true);
     } else {
-      this.intentos--;
       this.CambiarFontColor();
       let mensaje :string = this.GenerarMensaje();
       this.MostrarMensaje(mensaje);
-      this.nuevoJuego.numeroIngresado = null;
+      this.pathAhorcado = "./assets/imagenes/ahorcado" + this.nuevoJuego.intentos + ".png";
     }
-    if (!this.intentos) {
+    if (!this.nuevoJuego.intentos) {
       this.GuardarJuego();  
     }
   }
@@ -79,38 +74,34 @@ export class AdivinaElNumeroComponent implements OnInit {
 
   private GenerarMensaje() :string {
     let mensaje :string;
-    switch (this.intentos) {
+    switch (this.nuevoJuego.intentos) {
       case 0:
-        mensaje = "Has perdido. Mejor dedicate a la bolita.";
+        mensaje = "Descansa en paz.";
         break;
-      case INTENTOS_INICIALES-1:
-        mensaje = "No, intento fallido, animo.";
+      case 1:
+        mensaje = "No pelees mas, ve hacia la luz hijo mio.";
         break;
-      case INTENTOS_INICIALES-2:
-        mensaje = "No, ¿¿¿te estaras accercando???";
+      case 2:
+        mensaje = "¿Ya estas viendo la luz?.";
         break;
-      case INTENTOS_INICIALES-3:
-        mensaje = "No es, yo crei que la tercera era la vencida.";
+      case 3:
+        mensaje = "El final se acerca.";
         break;
-      case INTENTOS_INICIALES-4:
-        mensaje = "No era " + this.nuevoJuego.numeroIngresado + ".";
+      case 4:
+        mensaje = "Ponele onda porque asi vamos mal";
         break;
-      case INTENTOS_INICIALES-5:
-        mensaje = INTENTOS_INICIALES-5 + " intentos y nada.";
+      case 5:
+        mensaje = "No te desanimes, segui intentando.";
         break;
-      case INTENTOS_INICIALES-6:
-        mensaje = "Afortunado en el amor.";
+      case 6:
+        mensaje = "No pasa nada, solo es un error, vos podes.";
         break;
       
-      default:
-        mensaje = "Ya te has equivocado " + (INTENTOS_INICIALES - this.intentos) + " veces";
-        break;
     }
-    document.getElementById("input").focus();
-    return mensaje + " Ayuda: " + this.nuevoJuego.RetornarAyuda()
+    return mensaje;
   }  
 
-  private MostrarMensaje(mensaje :string = "este es el mensaje", ganador :boolean = false) {
+  private MostrarMensaje(mensaje :string, ganador :boolean = false) {
     this.mensajes = mensaje;    
     var x = document.getElementById("snackbar");
     if (ganador)
@@ -133,16 +124,16 @@ export class AdivinaElNumeroComponent implements OnInit {
     if (this.nuevoJuego.puntaje == PUNTAJE_INICIAL) {
       puntaje.className = "green";
       intentos.className = "green";
-    } else if (this.nuevoJuego.puntaje >= 8000) {
+    } else if (this.nuevoJuego.puntaje >= 9000) {
       puntaje.className = "yellowgreen";
       intentos.className = "yellowgreen";
     } else if (this.nuevoJuego.puntaje >= 6000) {
       puntaje.className = "yellow";
       intentos.className = "yellow";
-    } else if (this.nuevoJuego.puntaje >= 4000) {
+    } else if (this.nuevoJuego.puntaje >= 3000) {
       puntaje.className = "orange";
       intentos.className = "orange";
-    } else if (this.nuevoJuego.puntaje >= 2000) {
+    } else if (this.nuevoJuego.puntaje > 0) {
       puntaje.className = "orangered";
       intentos.className = "orangered";
     } else {
@@ -150,9 +141,5 @@ export class AdivinaElNumeroComponent implements OnInit {
       intentos.className = "red";
     }
   }
-
-   private ValidarNumero(numero) :boolean {
-     return !Number.isNaN(numero) && numero > 0 && numero < 101
-   }
 
 }

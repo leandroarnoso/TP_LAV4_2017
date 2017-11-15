@@ -1,13 +1,14 @@
 <nav class="navbar navbar-inverse">
 <div class="container-fluid">
     <ul class="nav navbar-nav navbar-header">
-      <li class="active"><a class="navbar-brand" href="/">Inicio</a></li>
+      <li class="active"><a class="navbar-brand" href="/"><i class="fa fa-home"></i> Inicio</a></li>
     </ul>
     <ul *ngIf="nombreUsuario" class="nav navbar-nav navbar-header">
       <li><a href="/juegos/adivina-el-numero"><i class="fa fa-gamepad"></i> Adivina el Numero</a></li>
       <li><a href="/juegos/agilidad-aritmetica"><i class="fa fa-gamepad"></i> Agilidad Aritmetica</a></li>
       <li><a href="/juegos/piedra-papel-tijera"><i class="fa fa-gamepad"></i> Piedra, Papel o Tijera</a></li>
       <li><a href="/juegos/anagrama"><i class="fa fa-gamepad"></i> Anagrama</a></li>
+      <li><a href="/juegos/ahorcado"><i class="fa fa-gamepad"></i> Ahorcado</a></li>
     </ul>
   <ul *ngIf="!nombreUsuario" class="nav navbar-nav navbar-right">
     <li><a href="/registro"><span class="glyphicon glyphicon-pencil"></span> Registrarse</a></li>

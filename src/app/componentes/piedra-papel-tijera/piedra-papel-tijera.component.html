@@ -12,7 +12,7 @@
 
   <form name="juego" id="juego">
 
-    <div *ngIf="!ocultarVerificar && nuevoJuego.derrotas < 3 && !jugador.gano" class="container">
+    <div class="container" *ngIf="!ocultarVerificar && nuevoJuego.derrotas < 3 && !nuevoJuego.jugador.gano">
       <h1 align="center"><b>Elegi una opcion:</b></h1>  
     
       <div (click)="Verificar(1)" class="card">
@@ -41,22 +41,25 @@
     <h3 id="ronda">Ronda Nro: {{ ronda || 0 }}</h3>
   
     <h2>
-      <button *ngIf="jugador.gano || nuevoJuego.derrotas == 3 || ronda == 0" (click)="GenerarNuevo()" class="btn btn-info btn-lg">
+      <button *ngIf="nuevoJuego.jugador.gano || nuevoJuego.derrotas == 3 || ronda == 0" (click)="GenerarNuevo()" class="btn btn-info btn-lg">
         Iniciar Juego
       </button>
     </h2>
   
     <h2>
-      <p align="center" *ngIf="!ocultarVerificar && nuevoJuego.derrotas < 3 && !jugador.gano" ><i class="fa fa-spinner fa-pulse"></i>
+      <p align="center" *ngIf="!ocultarVerificar && nuevoJuego.derrotas < 3 && !nuevoJuego.jugador.gano" ><i class="fa fa-spinner fa-pulse"></i>
         Esperando opcion
       </p>
     </h2>
 
-    <h3 align="center" *ngIf="!ocultarVerificar && jugador.gano">You Win </h3>
+    <h3 align="center" *ngIf="!ocultarVerificar && nuevoJuego.jugador.gano">You Win </h3>
     <h3 align="center" *ngIf="!ocultarVerificar && nuevoJuego.derrotas == 3">You Lose </h3>
     <h3 align="center" *ngIf="!ocultarVerificar && (nuevoJuego.derrotas == 0 || nuevoJuego.victorias == 0)">Flawless Victory</h3>
 
   </form>
 
   <div id="snackbar">{{mensajes}}</div>
+
+  <app-listado-de-resultados [listado]="listado" [nombreJuego]="nuevoJuego.nombre" [nombreJugador]="jugador.nombreUsuario"></app-listado-de-resultados>
+
 </div>

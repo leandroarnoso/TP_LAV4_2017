@@ -34,11 +34,13 @@
       </p>
     </h2>
 
-    <h3 align="center" *ngIf="jugador.gano">Congratulations, ganaste <i class="fa fa-birthday-cake"></i></h3>
-    <h3 align="center" *ngIf="!jugador.gano && tiempo == 0">Perdiste. Mejor suerte para la proxima.</h3>
+    <h3 align="center" *ngIf="nuevoJuego.jugador.gano">Congratulations, ganaste <i class="fa fa-birthday-cake"></i></h3>
+    <h3 align="center" *ngIf="!nuevoJuego.jugador.gano && tiempo == 0">Perdiste. Mejor suerte para la proxima.</h3>
 
   </form>
 
   <div id="snackbar">{{mensajes}}</div>
+
+  <app-listado-de-resultados [listado]="listado" [nombreJuego]="nuevoJuego.nombre" [nombreJugador]="jugador.nombreUsuario"></app-listado-de-resultados>
 
 </div>

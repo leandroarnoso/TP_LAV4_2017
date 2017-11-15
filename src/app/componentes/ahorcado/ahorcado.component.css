@@ -1,24 +1,11 @@
 button:disabled,
 button[disabled]{
-  /*border: 1px solid #999999;*/
-  background-color: #cccccc;
-  border-color: #666666;
-  color: #666666;
   cursor: not-allowed;
-  padding: 14px 20px;
 }
-
-button:disabled:hover,
+/*button:disabled:hover,
 button[disabled]:hover {
-    background-color: red;
-    border-color: #666666;
-    color: white;
     cursor: not-allowed;
-}
-
-.fa-trophy {
-    color: gold;
-}
+}*/
 
 .fa-info-circle {
     color: #428bca;
@@ -68,8 +55,8 @@ form {
 
 input[type=text], input[type=password] {
     width: 100%;
-    padding: 12px 2px;
-    margin-left: 23%;
+    padding: 12px 2;
+    margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
@@ -80,8 +67,30 @@ button {
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
-    cursor: pointer;
     width: 100%;
+}
+
+.palabraSecreta {
+    display: inline-block;
+}
+.palabraSecreta h2 {
+    padding: 0 3px;
+}
+
+.opciones {
+    display: inline-block;
+    margin: 2px 2px;
+}
+.opciones button {
+    padding: 10px 10px;
+    margin: 7px 7px;
+    border-radius: 100%;
+    border: 1px solid ;
+}
+
+.letrasErroneas {
+    display: inline-block;
+    color: red;
 }
 
 button:hover {
@@ -98,36 +107,7 @@ button:hover {
     padding: 10px 18px;
     background-color: #3664F4;
 }
-
-.card {
-    box-shadow: 0 4px 8px 4px rgba(0,0,0,0.2);
-    transition: 0.3s;
-    border-radius: 5px; /* 5px rounded corners */
-    max-width: 300px;
-    height: 100%;
-    margin: 10px;
-    padding-bottom: 10px;
-    /*float: left;*/
-    background-color: transparent/* #DEF3A6*/;
-    text-align: center;
-    display: inline-block;
-    cursor: pointer;
-}
-
-/* Add rounded corners to the top left and the top right corner of the image */
-img {
-    border-radius: 5px 5px 0 0;
-    width: 200px;
-    height: 200px;
-}/* Add some padding inside the card container */
-.container {
-    /*padding: 2px 16px;*/
-    padding: 20px 375px;
-}
-.container h3 p {
-    display: inline-block;
-}
-.imgcontainer {
+/*.imgcontainer {
     text-align: center;
     margin: 24px 0 12px 0;
 }
@@ -135,10 +115,10 @@ img {
 img.avatar {
     width: 40%;
     border-radius: 50%;
-}
+}*/
 
-.container-description {
-    color: lightgray;
+.container {
+    color: lightgrey;
     border-top-left-radius: 35%;
     border-top-right-radius: 35%;
     margin: 5%;
@@ -152,7 +132,7 @@ img.avatar {
     background-size: cover;
 }
 
-.container-description h3 {
+.container h3 {
     color: #428bca;
 }
 
@@ -193,9 +173,6 @@ span.psw {
 }
 #snackbar.Perdedor {
     background-color: #FF0000;
-}
-#snackbar.Empate {
-    background-color: #F89406;
 }
 #snackbar.show {
     visibility: visible;

@@ -42,6 +42,8 @@ export class HomeComponent implements OnInit {
         break;
       case 'Anagrama':
         this.router.navigate(['/juegos/anagrama']);
+      case 'Ahorcado':
+        this.router.navigate(['/juegos/ahorcado']);
     }
   }
 

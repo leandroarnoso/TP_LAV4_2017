@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 // Clases
 import { Anagrama } from '../../clases/anagrama';
@@ -14,9 +14,8 @@ const PUNTAJE_INICIAL = 10000;
   styleUrls: ['./anagrama.component.css']
 })
 export class AnagramaComponent implements OnInit {
-  /*@Output() 
-  enviarJuego: EventEmitter<any> = new EventEmitter<any>();*/
 
+  listado :Array<any>;
   nuevoJuego: Anagrama;
   jugador :Jugador = JSON.parse(localStorage.getItem("jugador"));
   msjAnagrama :string;
@@ -35,6 +34,10 @@ export class AnagramaComponent implements OnInit {
     if (!localStorage.getItem("jugador")) {
       this.router.navigate(["/error"]);
     }
+    this.listado = JSON.parse(localStorage.getItem("resultados"));
+    if (!this.listado) {
+      this.listado = new Array();
+    }
     this.CambiarFontColor();
   }
 
@@ -51,7 +54,7 @@ export class AnagramaComponent implements OnInit {
   {
     this.ocultarVerificar = true;
     if (this.nuevoJuego.Verificar()) {      
-      //this.enviarJuego.emit(this.nuevoJuego);
+      this.intentos = 0;
       this.MostrarMensaje("Correctooooo!!!!", true);
     } else {
       this.intentos--;
@@ -60,8 +63,21 @@ export class AnagramaComponent implements OnInit {
       this.MostrarMensaje(mensaje);
       this.nuevoJuego.palabraIngresada = null;
     }
-    console.info("puntaje:", this.nuevoJuego.puntaje);
-    console.info("gano:", this.jugador.gano);   
+    if (!this.intentos) {
+      this.GuardarJuego();  
+    }
+    
+  }
+
+  private GuardarJuego() {
+    let resultado = {
+      juego: this.nuevoJuego.nombre,
+      jugador: this.nuevoJuego.jugador.nombreUsuario,
+      puntaje: this.nuevoJuego.puntaje,
+      fecha: new Date()
+    }
+    this.listado.push(resultado);
+    localStorage.setItem("resultados", JSON.stringify(this.listado));
   }
 
   private GenerarMensaje() :string {
@@ -82,12 +98,6 @@ export class AnagramaComponent implements OnInit {
       case INTENTOS_INICIALES-4:
         mensaje = "No era " + this.nuevoJuego.palabraIngresada + " la palabra correcta.";
         break;
-      /*case INTENTOS_INICIALES-5:
-        mensaje = INTENTOS_INICIALES-5 + " intentos y nada.";
-        break;
-      case INTENTOS_INICIALES-6:
-        mensaje = "Afortunado en el amor.";
-        break;*/
       
       default:
         mensaje = "Ya te has equivocado " + (INTENTOS_INICIALES - this.intentos) + " veces";

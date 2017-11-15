@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 // Clases
 import { PiedraPapelTijera } from '../../clases/piedra-papel-tijera';
@@ -10,13 +10,13 @@ import { Jugador } from '../../clases/jugador';
   styleUrls: ['./piedra-papel-tijera.component.css']
 })
 export class PiedraPapelTijeraComponent implements OnInit {
-  /*@Output() 
-  enviarJuego: EventEmitter<any> = new EventEmitter<any>();*/
-
+  
+  listado :Array<any>;
   nuevoJuego: PiedraPapelTijera;
   jugador :Jugador = JSON.parse(localStorage.getItem("jugador"));
   mensajes :string;
   ronda :number;
+  pathOpcMaquina :string;
   ocultarVerificar :boolean;
  
   constructor(private router :Router) {
@@ -28,6 +28,10 @@ export class PiedraPapelTijeraComponent implements OnInit {
   ngOnInit() {
     if (!localStorage.getItem("jugador")) {
       this.router.navigate(["/error"]);
+    }
+    this.listado = JSON.parse(localStorage.getItem("resultados"));
+    if (!this.listado) {
+      this.listado = new Array();
     }
     this.CambiarFontColor();
   }
@@ -43,15 +47,17 @@ export class PiedraPapelTijeraComponent implements OnInit {
   {
     this.nuevoJuego.opcJugador = opc;
     this.ocultarVerificar = true;
+    this.MostrarOpcMaquina();
     if (this.nuevoJuego.Verificar()) {      
-      //this.enviarJuego.emit(this.nuevoJuego);
       if (this.nuevoJuego.derrotas == 0) {
           this.nuevoJuego.puntaje += 4000;
       } else if (this.nuevoJuego.derrotas == 1) {
           this.nuevoJuego.puntaje += 2000;
       }
+      this.GuardarJuego();
       this.MostrarMensaje("Ganaste " + this.nuevoJuego.victorias + " a " + this.nuevoJuego.derrotas + ".", 1);
     } else if (this.nuevoJuego.derrotas == 3) {
+      this.GuardarJuego();
       this.MostrarMensaje("Perdiste " + this.nuevoJuego.victorias + " a " + this.nuevoJuego.derrotas + ".", -1);
     } else {
       this.ronda++;
@@ -60,6 +66,33 @@ export class PiedraPapelTijeraComponent implements OnInit {
       this.nuevoJuego.NuevaOpcMaquina();
     }
     this.CambiarFontColor(); 
+  }
+
+  private GuardarJuego() {
+    let resultado = {
+      juego: this.nuevoJuego.nombre,
+      jugador: this.nuevoJuego.jugador.nombreUsuario,
+      puntaje: this.nuevoJuego.puntaje,
+      fecha: new Date()
+    }
+    this.listado.push(resultado);
+    localStorage.setItem("resultados", JSON.stringify(this.listado));
+  }
+
+  private MostrarOpcMaquina() {
+    let path :string = "./assets/imagenes/";
+    switch(this.nuevoJuego.opcMaquina) {
+      case 1:
+        path += "piedra.jpg";
+        break;
+      case 2:
+        path += "papel.jpg";
+        break;
+      case 3:
+        path += "tijera.jpg";
+        break;
+    }
+    this.pathOpcMaquina = path;
   }
 
   private GenerarMensaje() :string {

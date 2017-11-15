@@ -16,28 +16,31 @@
     <h3 id="puntaje">Puntaje: {{ nuevoJuego.puntaje || 0 }}</h3>
     <h3 id="intentos">Intentos: {{ intentos || 0 }}</h3>
   
-    <h2 *ngIf="!ocultarVerificar && !jugador.gano && intentos > 0">
+    <h2 *ngIf="!ocultarVerificar && !nuevoJuego.jugador.gano && intentos > 0">
       <button (click)="Verificar()" class="btn btn-success btn-lg" [disabled]="!ValidarPalabra(nuevoJuego.palabraIngresada)">
         Verificar
       </button>
     </h2>
   
     <h2>
-      <button *ngIf="jugador.gano || intentos == 0" (click)="GenerarNuevo()" class="btn btn-info btn-lg">
+      <button *ngIf="nuevoJuego.jugador.gano || intentos == 0" (click)="GenerarNuevo()" class="btn btn-info btn-lg">
         Nueva palabra
       </button>
     </h2>
   
     <h2>
-      <p align="center" *ngIf="!ocultarVerificar && !jugador.gano && intentos > 0" ><i class="fa fa-spinner fa-pulse"></i>
+      <p align="center" *ngIf="!ocultarVerificar && !nuevoJuego.jugador.gano && intentos > 0" ><i class="fa fa-spinner fa-pulse"></i>
         Esperando que ingrese una palabra
       </p>
     </h2>
 
-    <h3 align="center" *ngIf="!ocultarVerificar && jugador.gano">Buena champion, aca tenes tu trofeo <i class="fa fa-trophy"></i></h3>
-    <h3 align="center" *ngIf="!ocultarVerificar && !jugador.gano && intentos == 0">Perdiste. Mejor suerte para la proxima.</h3>
+    <h3 align="center" *ngIf="!ocultarVerificar && nuevoJuego.jugador.gano">Buena champion, aca tenes tu trofeo <i class="fa fa-trophy"></i></h3>
+    <h3 align="center" *ngIf="!ocultarVerificar && !nuevoJuego.jugador.gano && intentos == 0">Perdiste. Mejor suerte para la proxima.</h3>
 
   </form>
 
   <div id="snackbar">{{mensajes}}</div>
+
+  <app-listado-de-resultados [listado]="listado" [nombreJuego]="nuevoJuego.nombre" [nombreJugador]="jugador.nombreUsuario"></app-listado-de-resultados>
+
 </div>
