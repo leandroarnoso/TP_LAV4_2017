@@ -4,14 +4,16 @@
 
   <div class="container">
     <h3><i class="fa fa-info-circle"></i><b> Instrucciones de juego:</b></h3>
-    <h4>Tienes 7 intentos para descubrir la palabra.</h4>
-    <h4>Cada intento fallido te restara 2000 puntos.</h4>
+    <ul>
+      <li><h4>Tienes 7 intentos para descubrir la palabra.</h4></li>
+      <li><h4>Cada intento fallido te restara 2000 puntos.</h4></li>
+    </ul>
   </div>
 
   <form name="juego" id="juego">
 
-    <h3 id="puntaje">Puntaje: {{ nuevoJuego.puntaje || 0}}</h3>
-    <h3 id="intentos">Intentos Restantes: {{ nuevoJuego.intentos || 0}}</h3>
+    <h3 style="font-family: 'Orbitron', sans-serif;font-size:20px;" id="puntaje">Puntaje: {{ nuevoJuego.puntaje || 0}}</h3>
+    <h3 style="font-family: 'Orbitron', sans-serif;font-size:20px;" id="intentos">Intentos Restantes: {{ nuevoJuego.intentos || 0}}</h3>
 
     <div *ngIf="!nuevoJuego.jugador.gano">
       <img class="img-thumbnail" src="{{pathAhorcado}}" alt="Avatar">
@@ -50,7 +52,7 @@
       </p>
     </h2>
 
-    <h3 align="center" *ngIf="!ocultarVerificar && nuevoJuego.jugador.gano">Esa era la palabra.</h3>
+    <h3 align="center" *ngIf="!ocultarVerificar && nuevoJuego.jugador.gano">Muy bien, {{nuevoJuego.palabraSecreta}} era la palabra.</h3>
     <h3 align="center" *ngIf="!ocultarVerificar && !nuevoJuego.jugador.gano && nuevoJuego.intentos == 0">Perdiste. Mejor suerte para la proxima.</h3>
 
   </form>

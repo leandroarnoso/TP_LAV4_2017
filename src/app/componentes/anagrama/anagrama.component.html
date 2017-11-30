@@ -4,17 +4,19 @@
 
   <div class="container">
     <h3><i class="fa fa-info-circle"></i><b> Instrucciones de juego:</b></h3>
-    <h4>Tienes que formar la palabra correcta con las mismas letras de la palabra que aparezca.</h4>
-    <h4>Tienes 5 intentos para hallar la palabra.</h4>
-    <h4>Cada intento te restara 2000 puntos.</h4>
+    <ul>
+      <li><h4>Tienes que formar la palabra correcta con las mismas letras de la palabra que aparezca.</h4></li>
+      <li><h4>Tienes 5 intentos para hallar la palabra.</h4></li>
+      <li><h4>Cada intento te restara 2000 puntos.</h4></li>
+    </ul>
   </div>
 
   <form name="juego" id="juego">
 
     <h2 align="center"><b>{{ msjAnagrama }}</b></h2>  
     <input [(ngModel)]="nuevoJuego.palabraIngresada" placeholder="Ingrese la palabra" name="palabraIngresada" id="input" type="text" class="form-control" style="width:50%"/>
-    <h3 id="puntaje">Puntaje: {{ nuevoJuego.puntaje || 0 }}</h3>
-    <h3 id="intentos">Intentos: {{ intentos || 0 }}</h3>
+    <h3 style="font-family: 'Orbitron', sans-serif;font-size:20px;" id="puntaje">Puntaje: {{ nuevoJuego.puntaje || 0 }}</h3>
+    <h3 style="font-family: 'Orbitron', sans-serif;font-size:20px;" id="intentos">Intentos: {{ intentos || 0 }}</h3>
   
     <h2 *ngIf="!ocultarVerificar && !nuevoJuego.jugador.gano && intentos > 0">
       <button (click)="Verificar()" class="btn btn-success btn-lg" [disabled]="!ValidarPalabra(nuevoJuego.palabraIngresada)">

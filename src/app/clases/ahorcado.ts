@@ -6,7 +6,8 @@ export class Ahorcado extends Juego{
     // ATRIBUTOS
     private palabras :Array<string> = [
         "AHORCADO", "ONOMATOPEYA", "ORNITORRINCO", "LANZACOHETES", "HEMOGLOBINA", "PALEONTOLOGIA",
-        "ENTEREZA", "PIGMENTO", "CEFALOPODOS", "SALAMANDRA", "EPIDERMIS", "ANGLOSAJON"
+        "ENTEREZA", "PIGMENTO", "CEFALOPODOS", "SALAMANDRA", "EPIDERMIS", "ANGLOSAJON", "CALABAZA",
+        "REVISTA", "TERREMOTO", "PARABOLA", "ESCUDO", "ESTRIBILLO", "INVASION", "RASTRILLO"
     ];
     abecedario :Array<string> = [
         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',

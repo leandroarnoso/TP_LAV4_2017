@@ -20,10 +20,13 @@ export class AhorcadoComponent implements OnInit {
   mensajes :string;
   pathAhorcado :string;
   ocultarVerificar :boolean;
+  aciertos : number;
  
   constructor(private router :Router) {
-    this.nuevoJuego = new Ahorcado("Ahorcado", this.jugador);
-    this.ocultarVerificar = true;
+    if(this.jugador) {
+      this.nuevoJuego = new Ahorcado("Ahorcado", this.jugador);
+      this.ocultarVerificar = true;
+    }
   }
 
   ngOnInit() {
@@ -38,6 +41,7 @@ export class AhorcadoComponent implements OnInit {
   }
 
   GenerarNuevo() {
+    this.aciertos = 0;
     this.nuevoJuego.GenerarNuevo(PUNTAJE_INICIAL);
     this.ocultarVerificar = false;
     this.CambiarFontColor();
@@ -74,29 +78,31 @@ export class AhorcadoComponent implements OnInit {
 
   private GenerarMensaje() :string {
     let mensaje :string;
-    switch (this.nuevoJuego.intentos) {
-      case 0:
-        mensaje = "Descansa en paz.";
-        break;
-      case 1:
-        mensaje = "No pelees mas, ve hacia la luz hijo mio.";
-        break;
-      case 2:
-        mensaje = "¿Ya estas viendo la luz?.";
-        break;
-      case 3:
-        mensaje = "El final se acerca.";
-        break;
-      case 4:
-        mensaje = "Ponele onda porque asi vamos mal";
-        break;
-      case 5:
-        mensaje = "No te desanimes, segui intentando.";
-        break;
-      case 6:
-        mensaje = "No pasa nada, solo es un error, vos podes.";
-        break;
-      
+    if (this.aciertos == this.nuevoJuego.letrasCorrectas.length) {
+      switch (this.nuevoJuego.intentos) {
+        case 0:
+          mensaje = "R.I.P.";
+          break;
+        case 1:
+          mensaje = "Un solo intento mas, estas al horno.";
+          break;
+        case 2:
+          mensaje = "Solo dos intentos mas y se acabo.";
+          break;
+        case 3:
+          mensaje = "Bueno empeza a ponerle onda porque asi vamos mal.";
+          break;
+        case 4:
+          mensaje = "No te desanimes, segui intentando.";
+          break;
+        case 5:
+          mensaje = "No pasa nada, solo es un error, vos podes.";
+          break;
+        
+      }
+    } else {
+      mensaje = "Bien, segui asi.";
+      this.aciertos++;
     }
     return mensaje;
   }  

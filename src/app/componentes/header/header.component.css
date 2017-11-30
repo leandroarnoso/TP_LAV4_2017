@@ -8,15 +8,12 @@
     color: white;
     border-color: black;
     border-bottom-color: yellowgreen;
-}
-
-.hero-text {
-    /*background-color: #DEF3A6;*/
-    
+    font-family: 'Orbitron', sans-serif;
 }
 
 h1 {
-    color: lightsteelblue;
+    color: darkorange/*#f4511e*/;
+    text-shadow: 4px 4px 4px darkgrey;
 }
 
 p {

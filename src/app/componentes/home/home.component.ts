@@ -11,8 +11,8 @@ import { Jugador } from "../../clases/jugador";
 
 export class HomeComponent implements OnInit {
   
-  title :string = "Sala de Juegos";
-  nombreUsuario :string;
+  title :string = "SALA DE JUEGOS";
+  nombreUsuario :string = "";
 
   constructor(private route :ActivatedRoute, private router :Router) { }
 
@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
     this.Cargar();
   }
 
-  Cargar() {
+  Cargar(ev :any = null) {
     let jugador :Jugador = JSON.parse(localStorage.getItem("jugador"));
     if (jugador) {
       this.nombreUsuario = jugador.nombreUsuario;
@@ -42,8 +42,10 @@ export class HomeComponent implements OnInit {
         break;
       case 'Anagrama':
         this.router.navigate(['/juegos/anagrama']);
+        break;
       case 'Ahorcado':
         this.router.navigate(['/juegos/ahorcado']);
+        break;
     }
   }
 

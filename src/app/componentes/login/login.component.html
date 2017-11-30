@@ -7,7 +7,7 @@
         <div class="imgcontainer">
           <img src="./assets/imagenes/login.png" alt="Avatar" class="avatar" max-width="104" >
         </div>
-
+        
         <legend><b>Sign In</b></legend>
         <div class="form-group">
           <label><b>Email:</b></label>
@@ -24,11 +24,15 @@
             La contraseña debe contener entre 8 y 12 caracteres alfanumericos.
           </div>
         </div>
-              
-        <button type="submit" class="btn btn-success" *ngIf="!logeando" [disabled]="!loginForm.valid">
+
+        <button type="submit" id="btnSubmit" class="btn btn-success" *ngIf="!logeando" [disabled]="!loginForm.valid" >
           <i class="fa fa-sign-in"></i> Ingresar
         </button>
+        <div class="alert alert-danger" *ngIf="mostrarError">
+          {{mensajeError}}.
+        </div>
         <button type="button" class="btn btn-warning" *ngIf="!logeando" (click)="CompletarForm()">Autocompletar</button>
+        <button type="button" class="btn btn-info" *ngIf="!logeando" (click)="CargarDatos()">CargarDatos</button>
         
         <div *ngIf="logeando" class="progress">
           <div class="progress-bar progress-bar-info progress-bar-striped active" [class]="clase" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" [style.width]="ProgresoDeAncho" >

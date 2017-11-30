@@ -33,9 +33,9 @@ button {
     width: 100%;
 }
 
-button:hover {
+/*button:hover {
     opacity: 0.8;
-}
+}*/
 
 button:disabled,
 button[disabled]{
@@ -50,7 +50,6 @@ button[disabled]:hover{
   color: white;
   cursor: not-allowed;
   padding: 14px 20px;
-
 }
 
 /* Animacion para el alert*/
@@ -92,8 +91,11 @@ button[disabled]:hover{
 
 .imgcontainer {
     text-align: center;
-    margin: 24px 0 12px 0;
-    background-color: black;
+    margin: 24px 30% 12px 30%;
+    background-color: green;
+    width: 40%;
+    border-radius: 100%;
+    border: 8px solid black;
 }
 
 .container {
@@ -102,12 +104,10 @@ button[disabled]:hover{
     width: 40%;
     background-color: whitesmoke; /*rgb(-150, -150, 100);*/
     border: 2px solid green;
-
 }
 
-
 img.avatar {
-    width: 40%;
+    width: 100%;
 }
 
 span.psw {

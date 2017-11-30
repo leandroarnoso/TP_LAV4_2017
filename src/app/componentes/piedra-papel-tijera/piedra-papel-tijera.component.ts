@@ -16,13 +16,14 @@ export class PiedraPapelTijeraComponent implements OnInit {
   jugador :Jugador = JSON.parse(localStorage.getItem("jugador"));
   mensajes :string;
   ronda :number;
-  pathOpcMaquina :string;
   ocultarVerificar :boolean;
  
   constructor(private router :Router) {
-    this.nuevoJuego = new PiedraPapelTijera("Piedra, Papel o Tijera", this.jugador);
-    this.ocultarVerificar = true;
-    this.ronda = 0;
+    if (this.jugador) {
+      this.nuevoJuego = new PiedraPapelTijera("Piedra, Papel o Tijera", this.jugador);
+      this.ocultarVerificar = true;
+      this.ronda = 0;
+    }
   }
 
   ngOnInit() {
@@ -47,7 +48,6 @@ export class PiedraPapelTijeraComponent implements OnInit {
   {
     this.nuevoJuego.opcJugador = opc;
     this.ocultarVerificar = true;
-    this.MostrarOpcMaquina();
     if (this.nuevoJuego.Verificar()) {      
       if (this.nuevoJuego.derrotas == 0) {
           this.nuevoJuego.puntaje += 4000;
@@ -79,33 +79,29 @@ export class PiedraPapelTijeraComponent implements OnInit {
     localStorage.setItem("resultados", JSON.stringify(this.listado));
   }
 
-  private MostrarOpcMaquina() {
-    let path :string = "./assets/imagenes/";
-    switch(this.nuevoJuego.opcMaquina) {
-      case 1:
-        path += "piedra.jpg";
-        break;
-      case 2:
-        path += "papel.jpg";
-        break;
-      case 3:
-        path += "tijera.jpg";
-        break;
-    }
-    this.pathOpcMaquina = path;
-  }
-
   private GenerarMensaje() :string {
     let mensaje :string;
     switch (this.nuevoJuego.resultado) {
       case 0:
-        mensaje = "Empate.";
+        mensaje = "Empate. ";
         break;
       case -1:
-        mensaje = "Derrota.";
+        mensaje = "Derrota. ";
         break;
       case 1:
-        mensaje = "Victoria.";
+        mensaje = "Victoria. ";
+        break;
+    }
+    mensaje += "La maquina eligio "
+    switch (this.nuevoJuego.opcMaquina) {
+      case 1:
+        mensaje += "Piedra.";
+        break;
+      case 2:
+        mensaje += "Papel.";
+        break;
+      case 3:
+        mensaje += "Tijera.";
         break;
     }
 

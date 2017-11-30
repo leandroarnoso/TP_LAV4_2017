@@ -93,13 +93,6 @@ export class RegistroComponent implements OnInit {
     listaUsuarios.push(jugador);
     localStorage.setItem("usuarios", JSON.stringify(listaUsuarios));
     this.router.navigate(["/login"]);
-    /*let jugador :Jugador = new Jugador(
-      this.registroForm.get('nombreUsuario').value, 
-      this.registroForm.get('email').value,
-      this.registroForm.get('sexo').value,
-      this.registroForm.get('password').value
-    );
-    this.miJugadorService.Crear("usuario/alta", jugador);*/
   }
  
 }

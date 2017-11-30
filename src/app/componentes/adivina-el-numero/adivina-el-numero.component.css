@@ -75,9 +75,9 @@ button {
     /*background-color: #4CAF50;*/
     color: white;
     padding: 14px 20px;
-    margin: 8px 0;
+    margin: 8px 35%;
     cursor: pointer;
-    width: 100%;
+    width: 30%;
 }
 
 button:hover {
@@ -121,6 +121,7 @@ img.avatar {
 
 .container h3 {
     color: #428bca;
+    font-family: 'Orbitron', sans-serif;
 }
 
 span.psw {

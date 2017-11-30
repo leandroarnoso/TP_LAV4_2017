@@ -4,16 +4,18 @@
 
   <div class="container">
     <h3><i class="fa fa-info-circle"></i><b> Instrucciones de juego:</b></h3>
-    <h4>Tienes 10 intentos para adivinar el numero secreto entre el 1 al 100 inclusivos.</h4>
-    <h4>Cada intento te restara 1000 puntos.</h4>
+    <ul>
+      <li><h4>Tienes 10 intentos para adivinar el numero secreto entre el 1 al 100 inclusivos.</h4></li>
+      <li><h4>Cada intento te restara 1000 puntos.</h4></li>
+    </ul>
   </div>
 
   <form name="juego" id="juego">
 
     <label><b>Ingrese un Numero:</b></label>  
     <input id="input" [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="Ingrese un Numero" name="numeroIngresado" type="text" class="form-control" style="width:50%"/>
-    <h3 id="puntaje">Puntaje: {{ nuevoJuego.puntaje || 0}}</h3>
-    <h3 id="intentos">Intentos Restantes: {{ intentos || 0}}</h3>
+    <h3 style="font-family: 'Orbitron', sans-serif;font-size:20px;" id="puntaje">Puntaje: {{ nuevoJuego.puntaje || 0}}</h3>
+    <h3 style="font-family: 'Orbitron', sans-serif;font-size:20px" id="intentos">Intentos Restantes: {{ intentos || 0}}</h3>
   
     <h2 *ngIf="!ocultarVerificar && !nuevoJuego.jugador.gano && intentos > 0">
       <button (click)="Verificar()" class="btn btn-success btn-lg" [disabled]="!ValidarNumero(nuevoJuego.numeroIngresado)">

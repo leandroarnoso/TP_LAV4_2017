@@ -30,8 +30,10 @@ export class LoginComponent implements OnInit {
     this.ValidarAlfanumerico
   ]);
 
+  mostrarError :boolean = false;
   progreso :number;
-  progresoMensaje :string ="esperando..."; 
+  progresoMensaje :string = "esperando..."; 
+  mensajeError :string;
   logeando :boolean = false;
   ProgresoDeAncho :string;
 
@@ -59,45 +61,30 @@ export class LoginComponent implements OnInit {
   }
 
   Loguear() {
-
+    this.mostrarError = false;
     let listaUsuarios :Array<Jugador> = JSON.parse(localStorage.getItem("usuarios"));
     if (listaUsuarios) {
-      /*let usuario = listaUsuarios.filter( usuario => {
-        return usuario.email == this.loginForm.get("email").value && usuario.password == this.loginForm.get("password").value;
-      });
-      if (usuario[0]) {
-        localStorage.setItem("jugador", JSON.stringify(usuario[0]));
-        this.router.navigate(['']);
-      } else {
-        console.log("Email y contraseña erronea");
-      }
-    } else {
-      console.log("No se pudo conectar al servidor");
-    }*/
       listaUsuarios.forEach(usuario => {
         if (usuario.email == this.loginForm.get("email").value && usuario.password == this.loginForm.get("password").value) {
           localStorage.setItem("jugador", JSON.stringify(usuario));
           this.router.navigate(['']);
         } else {
-        console.log("Email y/o Contraseña erronea");
+        this.mensajeError = "Email y/o Contraseña erronea";
+        this.mostrarError = true;
         }
       });
     } else {
-      console.log("No se pudo conectar al servidor");
+      this.mensajeError = "No se pudo conectar al servidor";
+      this.mostrarError = true;
     }
     this.logeando = false;
     this.progreso = 0;
     this.ProgresoDeAncho = "0%";
-    /*let datos = {
-      email: this.loginForm.get("email").value,
-      password: this.loginForm.get("password").value
-    };
-    this.miJugadorService.Login("usuario", datos);*/
   }
 
   CompletarForm() {
+    this.mostrarError = false;
     this.loginForm.setValue({email: "admin@admin.com", password: "12345678"});
-    //this.loginForm.get("password").value = "12345678";
   }
 
   MoverBarraDeProgreso() {
@@ -137,6 +124,65 @@ export class LoginComponent implements OnInit {
           break;
       }     
     });
+  }
+
+
+  private CargarDatos() {
+    let usuarios :Array<any> = [
+      {nombreUsuario: "Leandro", email: "admin@admin.com", password: "12345678", sexo: "M"},
+      {nombreUsuario: "Loser123", email: "loser@loser.com", password: "12345678", sexo: "M"},
+      {nombreUsuario: "Pepe_Rascanuca", email: "pepe@rascanuca.com", password: "12345678", sexo: "M"},
+      {nombreUsuario: "Filomena", email: "filo@hotmail.com", password: "12345678", sexo: "F"}
+    ];
+    let fecha = new Date();
+    let resultados :Array<any> = [
+      {juego: "Adivina el Número", jugador: "Leandro", puntaje: 9000, fecha: fecha},
+      {juego: "Adivina el Número", jugador: "Leandro", puntaje: 4000, fecha: fecha},
+      {juego: "Ahorcado", jugador: "Leandro", puntaje: 14000, fecha: fecha},
+      {juego: "Ahorcado", jugador: "Leandro", puntaje: 10000, fecha: fecha},
+      {juego: "Agilidad Aritmetica", jugador: "Leandro", puntaje: 8000, fecha: fecha},
+      {juego: "Agilidad Aritmetica", jugador: "Leandro", puntaje: 8000, fecha: fecha},
+      {juego: "Piedra, Papel o Tijera", jugador: "Leandro", puntaje: 8000, fecha: fecha},
+      {juego: "Piedra, Papel o Tijera", jugador: "Leandro", puntaje: 10000, fecha: fecha},
+      {juego: "Anagrama", jugador: "Leandro", puntaje: 6000, fecha: fecha},
+      {juego: "Anagrama", jugador: "Leandro", puntaje: 4000, fecha: fecha},
+
+      {juego: "Adivina el Número", jugador: "Looser123", puntaje: 9000, fecha: fecha},
+      {juego: "Adivina el Número", jugador: "Looser123", puntaje: 4000, fecha: fecha},
+      {juego: "Ahorcado", jugador: "Looser123", puntaje: 14000, fecha: fecha},
+      {juego: "Ahorcado", jugador: "Looser123", puntaje: 10000, fecha: fecha},
+      {juego: "Agilidad Aritmetica", jugador: "Looser123", puntaje: 8000, fecha: fecha},
+      {juego: "Agilidad Aritmetica", jugador: "Looser123", puntaje: 8000, fecha: fecha},
+      {juego: "Piedra, Papel o Tijera", jugador: "Looser123", puntaje: 8000, fecha: fecha},
+      {juego: "Piedra, Papel o Tijera", jugador: "Looser123", puntaje: 10000, fecha: fecha},
+      {juego: "Anagrama", jugador: "Looser123", puntaje: 6000, fecha: fecha},
+      {juego: "Anagrama", jugador: "Looser123", puntaje: 4000, fecha: fecha},
+
+      {juego: "Adivina el Número", jugador: "Pepe_Rascanuca", puntaje: 8000, fecha: fecha},
+      {juego: "Adivina el Número", jugador: "Pepe_Rascanuca", puntaje: 2000, fecha: fecha},
+      {juego: "Ahorcado", jugador: "Pepe_Rascanuca", puntaje: 2000, fecha: fecha},
+      {juego: "Ahorcado", jugador: "Pepe_Rascanuca", puntaje: 10000, fecha: fecha},
+      {juego: "Agilidad Aritmetica", jugador: "Pepe_Rascanuca", puntaje: 10000, fecha: fecha},
+      {juego: "Agilidad Aritmetica", jugador: "Pepe_Rascanuca", puntaje: 4000, fecha: fecha},
+      {juego: "Piedra, Papel o Tijera", jugador: "Pepe_Rascanuca", puntaje: 2000, fecha: fecha},
+      {juego: "Piedra, Papel o Tijera", jugador: "Pepe_Rascanuca", puntaje: 8000, fecha: fecha},
+      {juego: "Anagrama", jugador: "Pepe_Rascanuca", puntaje: 8000, fecha: fecha},
+      {juego: "Anagrama", jugador: "Pepe_Rascanuca", puntaje: 4000, fecha: fecha},
+      
+      {juego: "Adivina el Número", jugador: "Filomena", puntaje: 3000, fecha: fecha},
+      {juego: "Adivina el Número", jugador: "Filomena", puntaje: 10000, fecha: fecha},
+      {juego: "Ahorcado", jugador: "Filomena", puntaje: 8000, fecha: fecha},
+      {juego: "Ahorcado", jugador: "Filomena", puntaje: 8000, fecha: fecha},
+      {juego: "Agilidad Aritmetica", jugador: "Filomena", puntaje: 6000, fecha: fecha},
+      {juego: "Agilidad Aritmetica", jugador: "Filomena", puntaje: 8000, fecha: fecha},
+      {juego: "Piedra, Papel o Tijera", jugador: "Filomena", puntaje: 8000, fecha: fecha},
+      {juego: "Piedra, Papel o Tijera", jugador: "Filomena", puntaje: 4000, fecha: fecha},
+      {juego: "Anagrama", jugador: "Filomena", puntaje: 6000, fecha: fecha},
+      {juego: "Anagrama", jugador: "Filomena", puntaje: 8000, fecha: fecha}
+    ];
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+    localStorage.setItem("resultados", JSON.stringify(resultados));
+    console.log("datos cargados");
   }
 
 }

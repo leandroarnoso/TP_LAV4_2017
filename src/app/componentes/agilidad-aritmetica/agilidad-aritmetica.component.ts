@@ -26,10 +26,11 @@ export class AgilidadAritmeticaComponent implements OnInit {
   ocultarVerificar :boolean;
 
   constructor(private router :Router) {
-    this.nuevoJuego = new AgilidadAritmetica("Agilidad Aritmetica", this.jugador);
-    this.ocultarVerificar = true;
-    this.tiempo;
-    console.info("Inicio agilidad");  
+    if (this.jugador) {
+      this.nuevoJuego = new AgilidadAritmetica("Agilidad Aritmetica", this.jugador);
+      this.ocultarVerificar = true;
+      this.tiempo;
+    }
   }
 
   ngOnInit() {
@@ -98,7 +99,6 @@ export class AgilidadAritmeticaComponent implements OnInit {
     var modelo = this;
     setTimeout(function() { 
       x.className = x.className.replace("show", "");
-      //modelo.tiempo = TIEMPO_INICIAL;
     }, 3000);
     console.info("objeto", x);
   }  

@@ -24,10 +24,11 @@ export class AnagramaComponent implements OnInit {
   ocultarVerificar :boolean;
  
   constructor(private router :Router) {
-    this.nuevoJuego = new Anagrama("Anagrama", this.jugador);
-    this.ocultarVerificar = true;
-    this.intentos = 0;
-    //this.GenerarNuevo();
+    if (this.jugador) {
+      this.nuevoJuego = new Anagrama("Anagrama", this.jugador);
+      this.ocultarVerificar = true;
+      this.intentos = 0;
+    }
   }
 
   ngOnInit() {

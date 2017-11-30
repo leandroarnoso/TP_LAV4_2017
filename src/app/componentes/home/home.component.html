@@ -1,5 +1,5 @@
 <div class="fondo">
-  <app-header (EventDeslogueo)="Cargar($event)" [title]="title" [nombreUsuario]="nombreUsuario"></app-header><br><br>
+  <app-header (EventDeslogueo)="Cargar($event)" [title]="title" [nombreUsuario]="nombreUsuario"></app-header>
 
   <div class="container">
 
@@ -13,12 +13,12 @@
       <a href="#"><i class="fa fa-twitter"></i></a> 
       <a href="#"><i class="fa fa-linkedin"></i></a> 
       <a href="#"><i class="fa fa-facebook"></i></a> 
-      <p><button class="button"  (click)="GoTo('Adivina')" [disabled]="!nombreUsuario">Jugar</button></p>
+      <p><button class="button" style="vertical-align:middle" (click)="GoTo('Adivina')" [disabled]="!nombreUsuario"><span>Jugar</span></button></p>
     </div>
 
     <div class="card">
       <img class="img-thumbnail"   src="./assets/imagenes/agilidad-mental.jpg" alt="Avatar" style="width:100%">
-      <h1>Agilidad Aritmética </h1>
+      <h1>Velocidad y Agilidad Aritmética </h1>
       <p class="title">Juego de agilidad mental</p>
       <p>UTN FRA </p>
     
@@ -26,7 +26,7 @@
       <a href="#"><i class="fa fa-twitter"></i></a> 
       <a href="#"><i class="fa fa-linkedin"></i></a> 
       <a href="#"><i class="fa fa-facebook"></i></a> 
-      <p><button class="button" (click)="GoTo('Agilidad')" [disabled]="!nombreUsuario">Jugar</button></p>  
+      <p><button class="button" style="vertical-align:middle" (click)="GoTo('Agilidad')" [disabled]="!nombreUsuario"><span>Jugar</span></button></p>  
     </div>
 
     <div class="card">
@@ -39,7 +39,7 @@
       <a href="#"><i class="fa fa-twitter"></i></a> 
       <a href="#"><i class="fa fa-linkedin"></i></a> 
       <a href="#"><i class="fa fa-facebook"></i></a> 
-      <p><button class="button"  (click)="GoTo('PPT')" [disabled]="!nombreUsuario">Jugar</button></p>
+      <p><button class="button" style="vertical-align:middle" (click)="GoTo('PPT')" [disabled]="!nombreUsuario"><span>Jugar</span></button></p>
     </div>
 
     <div class="card">
@@ -52,20 +52,20 @@
       <a href="#"><i class="fa fa-twitter"></i></a> 
       <a href="#"><i class="fa fa-linkedin"></i></a> 
       <a href="#"><i class="fa fa-facebook"></i></a> 
-      <p><button class="button"  (click)="GoTo('Anagrama')" [disabled]="!nombreUsuario">Jugar</button></p>
+      <p><button class="button" style="vertical-align:middle" (click)="GoTo('Anagrama')" [disabled]="!nombreUsuario"><span>Jugar</span></button></p>
     </div>
 
     <div class="card">
       <img class="img-thumbnail"  src="./assets/imagenes/ahorcado.jpg" alt="Avatar" style="width:100%">
       <h1>Ahorcado</h1>
-      <p class="title"></p>
+      <p class="title">Juego de adivinanzas</p>
       <p>UTN FRA </p>
         
       <a href="#"><i class="fa fa-dribbble"></i></a> 
       <a href="#"><i class="fa fa-twitter"></i></a> 
       <a href="#"><i class="fa fa-linkedin"></i></a> 
       <a href="#"><i class="fa fa-facebook"></i></a> 
-      <p><button class="button"  (click)="GoTo('Ahorcado')" [disabled]="!nombreUsuario">Jugar</button></p>
+      <p><button class="button" style="vertical-align:middle" (click)="GoTo('Ahorcado')" [disabled]="!nombreUsuario"><span>Jugar</span></button></p>
     </div>
     
   </div>

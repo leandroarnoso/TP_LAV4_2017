@@ -4,17 +4,19 @@
 
   <div class="container">
     <h3><i class="fa fa-info-circle"></i><b> Instrucciones de juego:</b></h3>
-    <h4>Tienes 10 segundos para resolver cada operacion matematica.</h4>
-    <h4>El puntaje sera la cantidad de segundos restantes por 1000.</h4>
-    <h4>Las divisiones son enteras. Ej: 9 / 5 = 1.</h4>
+    <ul>
+      <li><h4>Tienes 10 segundos para resolver cada operacion matematica.</h4></li>
+      <li><h4>El puntaje sera la cantidad de segundos restantes por 1000.</h4></li>
+      <li><h4>Las divisiones son enteras. Ej: 9 / 5 = 1.</h4></li>
+    </ul>
   </div>
 
   <form name="juego" id="juego">
 
     <label><b>{{ operacion }}</b></label>  
     <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="Ingrese el resultado de la operacion" name="numeroIngresado" id="input" type="text" class="form-control" style="width:50%"/>
-    <h3 id="puntaje">Puntaje: {{ nuevoJuego.puntaje || 0 }}</h3>
-    <h3 id="tiempo">Tiempo: {{ tiempo || 0 }} seg.</h3>
+    <h3 style="font-family: 'Orbitron', sans-serif;font-size:20px;" id="puntaje">Puntaje: {{ nuevoJuego.puntaje || 0 }}</h3>
+    <h3 style="font-family: 'Orbitron', sans-serif;font-size:20px;" id="tiempo">Tiempo: {{ tiempo || 0 }} seg.</h3>
   
     <h2 *ngIf="!ocultarVerificar">
       <button (click)="Verificar()" class="btn btn-success btn-lg" [disabled]="!ValidarNumero(nuevoJuego.numeroIngresado)">

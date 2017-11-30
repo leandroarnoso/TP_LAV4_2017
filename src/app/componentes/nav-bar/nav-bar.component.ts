@@ -9,7 +9,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 export class NavBarComponent implements OnInit {
   @Input()
-  nombreUsuario :string;
+  nombreUsuario :string = "";
 
   @Output() 
   EventDeslogueo: EventEmitter<any> = new EventEmitter<any>();
@@ -23,6 +23,7 @@ export class NavBarComponent implements OnInit {
     localStorage.removeItem("jugador");
     this.nombreUsuario = "";
     this.EventDeslogueo.emit(this.EventDeslogueo);
+    this.router.navigate(["/"]);
   }
 
 }

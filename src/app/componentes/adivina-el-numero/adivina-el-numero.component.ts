@@ -23,9 +23,11 @@ export class AdivinaElNumeroComponent implements OnInit {
   ocultarVerificar :boolean;
  
   constructor(private router :Router) {
-    this.nuevoJuego = new AdivinaElNumero("Adivina el Número", this.jugador);
-    this.ocultarVerificar = true;
-    this.intentos = 0;
+    if (this.jugador) {
+      this.nuevoJuego = new AdivinaElNumero("Adivina el Número", this.jugador);
+      this.ocultarVerificar = true;
+      this.intentos = 0;
+    }
   }
 
   ngOnInit() {

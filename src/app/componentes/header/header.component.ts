@@ -7,9 +7,9 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   @Input()
-  title :string;
+  title :string = "";
   @Input()
-  nombreUsuario :string;
+  nombreUsuario :string = "";
 
   @Output() 
   EventDeslogueo: EventEmitter<any> = new EventEmitter<any>();
@@ -19,8 +19,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  Cargar() {
-    this.EventDeslogueo.emit();
+  Cargar(ev :any) {
+    this.EventDeslogueo.emit(ev);
   }
 
 }
